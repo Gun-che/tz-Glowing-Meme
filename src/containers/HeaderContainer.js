@@ -8,45 +8,34 @@ import {
   createExitRequest
 } from '../actions/user'
 
-export const HeaderContainer = ({ signIn, signOut }) => {
+export const HeaderContainer = ({ signIn, signOut, userData, loggedIn }) => {
 
   useEffect(() => {
     auth2Init()
   }, [])
 
-  // const signIn = () => {
-  //   const auth2 = window.gapi.auth2.getAuthInstance();
-  //   auth2.signIn()
-  //     .then(googleUser => {
-
-  //       const profile = googleUser.getBasicProfile()
-  //       console.log('ID: ' + profile.getId())
-
-  //       const id_token = googleUser.getAuthResponse().id_token;
-  //       console.log('ID token: ' + id_token)
-  //     })
-  // }
-
-  // const signOut = () => {
-  //   const auth2 = window.gapi.auth2.getAuthInstance;
-  //   auth2.signOut()
-  //     .then(() => console.log('user Signed out'))
-  // }
-
   return (
     <div>
-      <button onClick={signIn}>Sign in</button>
-      <button onClick={signOut}>Sign Out</button>
-      <Header />
+      <Header
+        signIn={signIn}
+        signOut={signOut}
+        loggedIn={loggedIn}
+        userData={userData}
+      />
     </div>
   )
 }
 
 HeaderContainer.propTypes = {
-  signIn: PropTypes.func.isRequired
+  signIn: PropTypes.func.isRequired,
+  signOut: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  userData: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
+  loggedIn: state.user.loggedIn,
+  userData: state.user.userData
 })
 
 const mapDispatchToProps = dispatch => ({

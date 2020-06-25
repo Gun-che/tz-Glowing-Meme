@@ -6,6 +6,8 @@ import {
   Switch,
 } from 'react-router-dom'
 import HeaderContainer from '../../containers/HeaderContainer'
+import loadable from '@loadable/component'
+import { LoadingConst } from '../LoadingComponent/LoadingComponent'
 
 export const App = () => {
   return (
@@ -14,7 +16,9 @@ export const App = () => {
         <HeaderContainer />
         <Switch>
           <Route path='/' exact>home </Route>
-          <Route path='/news' exact>news </Route>
+          <Route path='/news' exact>
+            <News />
+          </Route>
           <Route path='/news/:newsId' exact>news id </Route>
           <Route path='/news/:newsId/edit' >news edit </Route>
           <Route path='/rep'>res </Route>
@@ -23,3 +27,7 @@ export const App = () => {
     </Router>
   )
 }
+
+const News = loadable(() => import('../../containers/NewsContainer'), {
+  fallback: LoadingConst
+})

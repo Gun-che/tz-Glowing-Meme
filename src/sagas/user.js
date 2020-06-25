@@ -11,19 +11,46 @@ import {
   SIGN_OUT_REQUEST,
   SIGN_OUT_SUCCESS,
   SIGN_OUT_FAILURE
-} from '../actions/user'
+} from '../actions/user';
+import api from '../utils/API'
 
 export function* handlerSignInRequest() {
   try {
-    console.log("i'm saga")
     const auth2 = yield call(window.gapi.auth2.getAuthInstance);
 
     const response = yield apply(auth2, auth2.signIn);
 
+    const token = yield apply(response, response.getAuthResponse)
+
+    console.log('getted primary token')
+    const id = yield apply(api, api.post, ['auth/google/', {
+
+      token: token.id_token
+
+    }])
+    console.log('getted compile token')
+
+    localStorage.setItem('loggedIn', 'true');
+
     yield put({
       type: SIGN_IN_SUCCESS,
-      payload: response.getBasicProfile()
+      payload: {
+        profile: response.getBasicProfile(),
+        token: id.data.token,
+      }
     })
+
+
+    // const news = yield apply(api, api.post, ['feeds/', {
+    //   title: '1',
+    //   content: '123123'
+    // }, {
+    //     headers: {
+    //       "x-access-token": id.data.token
+    //     },
+    //   }])
+
+    // console.log(news)
 
 
   } catch (e) {
@@ -42,6 +69,8 @@ export function* handlerSignOutRequest() {
 
     const response = yield apply(auth2, auth2.signOut)
 
+    localStorage.setItem('loggedIn', 'false');
+
     yield put({
       type: SIGN_OUT_SUCCESS
     })
@@ -57,13 +86,11 @@ export function* handlerSignOutRequest() {
 }
 
 export function* watchSignInRequest() {
-  console.log("i'm sign in request")
 
   yield takeEvery(SIGN_IN_REQUEST, handlerSignInRequest)
 }
 
 export function* watchSignOutRequest() {
-  console.log("i'm sign out request")
 
   yield takeEvery(SIGN_OUT_REQUEST, handlerSignOutRequest)
 }
