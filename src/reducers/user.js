@@ -9,8 +9,9 @@ import {
 
 const iniitState = {
   userData: {},
-  loggedIn: false,
-  msg: ''
+  loggedIn: JSON.parse(localStorage.getItem('loggedIn')) || false,
+  msg: '',
+  token: ''
 }
 
 export default function reducer(state = iniitState, action) {
@@ -22,9 +23,9 @@ export default function reducer(state = iniitState, action) {
       }
     case SIGN_IN_SUCCESS:
       return {
-        userData: action.payload,
+        userData: action.payload.profile,
         loggedIn: true,
-
+        token: action.payload.token
       }
     case SIGN_IN_FAILURE:
       return {
@@ -37,19 +38,20 @@ export default function reducer(state = iniitState, action) {
       return {
         ...state,
         msg: '',
-        userData: {}
       }
     case SIGN_OUT_SUCCESS:
       return {
         ...state,
         msg: '',
-        userData: {}
+        userData: {},
+        loggedIn: false,
+        token: ''
       }
     case SIGN_OUT_FAILURE:
       return {
         ...state,
         msg: action.payload,
-        userData: {}
+        userData: {},
       }
 
     default:
