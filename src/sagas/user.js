@@ -22,13 +22,13 @@ export function* handlerSignInRequest() {
 
     const token = yield apply(response, response.getAuthResponse)
 
-    console.log(token.id_token)
+    console.log('getted primary token')
     const id = yield apply(api, api.post, ['auth/google/', {
 
       token: token.id_token
 
     }])
-    console.log(id.data.token)
+    console.log('getted compile token')
 
     localStorage.setItem('loggedIn', 'true');
 
@@ -86,13 +86,11 @@ export function* handlerSignOutRequest() {
 }
 
 export function* watchSignInRequest() {
-  console.log("i'm sign in request")
 
   yield takeEvery(SIGN_IN_REQUEST, handlerSignInRequest)
 }
 
 export function* watchSignOutRequest() {
-  console.log("i'm sign out request")
 
   yield takeEvery(SIGN_OUT_REQUEST, handlerSignOutRequest)
 }
