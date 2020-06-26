@@ -4,14 +4,7 @@ import {
   call,
   apply
 } from 'redux-saga/effects'
-import {
-  SIGN_IN_REQUEST,
-  SIGN_IN_SUCCESS,
-  SIGN_IN_FAILURE,
-  SIGN_OUT_REQUEST,
-  SIGN_OUT_SUCCESS,
-  SIGN_OUT_FAILURE
-} from '../actions/user';
+import * as a from '../actions/user';
 import api from '../utils/API'
 
 export function* handlerSignInRequest() {
@@ -28,12 +21,12 @@ export function* handlerSignInRequest() {
       token: token.id_token
 
     }])
-    console.log('getted compile token')
+    console.log(id.data.token)
 
     localStorage.setItem('loggedIn', 'true');
 
     yield put({
-      type: SIGN_IN_SUCCESS,
+      type: a.SIGN_IN_SUCCESS,
       payload: {
         profile: response.getBasicProfile(),
         token: id.data.token,
@@ -56,7 +49,7 @@ export function* handlerSignInRequest() {
   } catch (e) {
     console.log(e)
     yield put({
-      type: SIGN_IN_FAILURE,
+      type: a.SIGN_IN_FAILURE,
       payload: e
     })
   }
@@ -72,25 +65,26 @@ export function* handlerSignOutRequest() {
     localStorage.setItem('loggedIn', 'false');
 
     yield put({
-      type: SIGN_OUT_SUCCESS
+      type: a.SIGN_OUT_SUCCESS
     })
     console.log(response, 'im exit')
   } catch (e) {
 
     yield put({
-      type: SIGN_OUT_FAILURE,
+      type: a.SIGN_OUT_FAILURE,
       payload: e
     })
     console.log(e)
   }
 }
 
+
 export function* watchSignInRequest() {
 
-  yield takeEvery(SIGN_IN_REQUEST, handlerSignInRequest)
+  yield takeEvery(a.SIGN_IN_REQUEST, handlerSignInRequest)
 }
 
 export function* watchSignOutRequest() {
 
-  yield takeEvery(SIGN_OUT_REQUEST, handlerSignOutRequest)
+  yield takeEvery(a.SIGN_OUT_REQUEST, handlerSignOutRequest)
 }
