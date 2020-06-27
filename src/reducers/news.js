@@ -4,6 +4,8 @@ const iniitState = {
   newsData: [],
   isFetching: false,
   msg: '',
+  editState: '',
+  currentData: []
 }
 
 export default function reducer(state = iniitState, action) {
@@ -13,6 +15,8 @@ export default function reducer(state = iniitState, action) {
         ...state,
         msg: '',
         isFetching: true,
+        editState: '',
+        currentData: []
       }
     case a.GET_NEWS_SUCCESS:
       return {
@@ -31,19 +35,19 @@ export default function reducer(state = iniitState, action) {
       return {
         ...state,
         msg: '',
-        isFetching: true,
+        editState: 'loading',
       }
     case a.EDIT_NEWS_SUCCESS:
       return {
         ...state,
-        newsData: action.payload,
-        isFetching: false,
+        // newsData: action.payload,
+        editState: 'done',
       }
     case a.EDIT_NEWS_FAILURE:
       return {
         ...state,
-        msg: action.payload.message,
-        isFetching: false,
+        msg: action.payload,
+        editState: 'err',
       }
 
     case a.DELETE_NEWS_REQUEST:
@@ -71,11 +75,13 @@ export default function reducer(state = iniitState, action) {
         ...state,
         msg: '',
         isFetching: true,
+        editState: '',
+        currentData: [],
       }
     case a.GET_NEWS_ITEM_SUCCESS:
       return {
         ...state,
-        newsData: action.payload,
+        currentData: action.payload,
         isFetching: false,
       }
     case a.GET_NEWS_ITEM_FAILURE:

@@ -10,6 +10,7 @@ import NewsItem from '../components/NewsItem'
 export const NewsItemContainer = ({
   handlerRequest,
   data,
+  currentData,
   msg,
   isFetching,
   token,
@@ -24,9 +25,9 @@ export const NewsItemContainer = ({
   }, [handlerRequest, newsId])
 
   const tmp = () => {
-    if (data.length === 1) {
+    if (currentData.length === 1) {
       return <NewsItem
-        data={data[0]}
+        data={currentData}
         token={token}
         deleteRequest={deleteRequest}
         userData={userData}
@@ -55,10 +56,12 @@ NewsItemContainer.propTypes = {
   token: PropTypes.string.isRequired,
   deleteRequest: PropTypes.func.isRequired,
   userData: PropTypes.object.isRequired,
+  currentData: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   data: state.news.newsData,
+  currentData: state.news.currentData,
   msg: state.news.msg,
   isFetching: state.news.isFetching,
   token: state.user.token,

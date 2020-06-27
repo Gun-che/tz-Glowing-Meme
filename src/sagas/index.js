@@ -7,7 +7,10 @@ import {
   watchNewsRequest,
   watchNewsItemRequest,
 } from './news'
-import { watchDeleteNewsRequest } from './newsEdit'
+import {
+  watchDeleteNewsRequest,
+  watchEditNewsRequest
+} from './newsEdit'
 
 export default function* rootSaga() {
   yield all([
@@ -16,5 +19,6 @@ export default function* rootSaga() {
     watchNewsRequest(),
     watchDeleteNewsRequest(),
     watchNewsItemRequest(),
+    watchEditNewsRequest(),
   ])
 }

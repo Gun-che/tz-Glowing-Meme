@@ -15,18 +15,22 @@ export const createNewsRequest = () => ({
   type: GET_NEWS_REQUEST
 });
 
-export const createEditNewsRequest = (newsId, title, content) => ({
+export const createEditNewsRequest = ({ newsId, title, content, token }) => ({
   type: EDIT_NEWS_REQUEST,
   payload: {
     newsId,
     title,
-    content
+    content,
+    token
   }
 });
 
-export const createDeleteNewsRequest = (newsId) => ({
+export const createDeleteNewsRequest = ({ newsId, token }) => ({
   type: DELETE_NEWS_REQUEST,
-  payload: newsId
+  payload: {
+    newsId,
+    token,
+  }
 });
 
 export const createGetNewsItemRequest = (newsId) => ({

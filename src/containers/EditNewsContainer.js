@@ -2,18 +2,20 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { createGetNewsItemRequest, createDeleteNewsRequest } from '../actions/news'
-import ErrorPage from '../components/ErrorPage'
+import { createGetNewsItemRequest, createDeleteNewsRequest, createEditNewsRequest } from '../actions/news'
 import { LoadingFullScreen } from '../components/LoadingComponent/LoadingComponent'
 import NewsEdit from '../components/NewsEdit'
 
 export const EditNewsContainer = ({
   handlerRequest,
   data,
+  currentData,
   msg,
   isFetching,
   token,
   userData,
+  editState,
+  editRequest
 }) => {
 
   let { newsId } = useParams();
@@ -23,16 +25,16 @@ export const EditNewsContainer = ({
   }, [handlerRequest, newsId])
 
   const tmp = () => {
-    if (data.length === 1) {
+    if (currentData.length === 1) {
       return <NewsEdit
-        data={data[0]}
+        data={currentData[0]}
         token={token}
         userData={userData}
+        newsId={newsId}
+        msg={msg}
+        editState={editState}
+        editRequest={editRequest}
       />
-
-    } else if (msg) {
-      return <ErrorPage err={msg} />
-
     } else if (isFetching) {
       return <LoadingFullScreen />
     }
@@ -53,6 +55,9 @@ EditNewsContainer.propTypes = {
   token: PropTypes.string.isRequired,
   deleteRequest: PropTypes.func.isRequired,
   userData: PropTypes.object.isRequired,
+  editState: PropTypes.string.isRequired,
+  editRequest: PropTypes.func.isRequired,
+  currentData: PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -61,11 +66,14 @@ const mapStateToProps = (state) => ({
   isFetching: state.news.isFetching,
   token: state.user.token,
   userData: state.user.userData,
+  editState: state.news.editState,
+  currentData: state.news.currentData
 })
 
 const mapDispatchToProps = dispatch => ({
   handlerRequest: (newsId) => dispatch(createGetNewsItemRequest(newsId)),
-  deleteRequest: (newsId) => dispatch(createDeleteNewsRequest(newsId))
+  deleteRequest: (options) => dispatch(createDeleteNewsRequest(options)),
+  editRequest: (options) => dispatch(createEditNewsRequest(options))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditNewsContainer)
