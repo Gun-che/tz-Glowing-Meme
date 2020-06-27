@@ -63,6 +63,18 @@ export default ({
       {data.length &&
         data.map((i) => {
 
+          const _onCutContent = (string) => {
+
+            if (string.split(' ').length > 50) {
+              return string
+                .split(' ', 50)
+                .join(' ')
+                + ' ...'
+            }
+
+            return string
+          }
+
           const date = new Date(i.createDate)
             .toLocaleDateString('ru', {
               year: 'numeric',
@@ -80,7 +92,7 @@ export default ({
                 <div className={s.item}>
                   <h2>{i.title}</h2>
                   <h3>{i.creator.displayName} {date}</h3>
-                  <p>{i.content}</p>
+                  <p>{_onCutContent(i.content)}</p>
                 </div>
               </Link>
             </div>
