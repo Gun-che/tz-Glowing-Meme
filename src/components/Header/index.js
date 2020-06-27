@@ -15,7 +15,9 @@ export const Header = ({ userData, loggedIn, signIn, signOut }) => {
 
   return (
     <header className={s.header}>
-      <h3>header</h3>
+      <div className={s.logo}>
+        <h3>W</h3>
+      </div>
       <ul>
         <li>
           <NavLink to='/'>home</NavLink>
