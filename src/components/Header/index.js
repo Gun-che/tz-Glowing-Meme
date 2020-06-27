@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import * as s from './index.module.scss'
+
 import UserCard from '../UserCard'
+import * as s from './index.module.scss'
 
 export const Header = ({ userData, loggedIn, signIn, signOut }) => {
 
   useEffect(() => {
+
     if (loggedIn && Object.keys(userData).length === 0) {
       window.onload = () => signIn();
     }

@@ -9,7 +9,6 @@ import NewsItem from '../components/NewsItem'
 
 export const NewsItemContainer = ({
   handlerRequest,
-  data,
   currentData,
   msg,
   isFetching,
@@ -49,7 +48,6 @@ export const NewsItemContainer = ({
 }
 
 NewsItemContainer.propTypes = {
-  data: PropTypes.array.isRequired,
   handlerRequest: PropTypes.func.isRequired,
   msg: PropTypes.string.isRequired,
   isFetching: PropTypes.bool.isRequired,
@@ -60,7 +58,6 @@ NewsItemContainer.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.news.newsData,
   currentData: state.news.currentData,
   msg: state.news.msg,
   isFetching: state.news.isFetching,

@@ -9,7 +9,6 @@ import api from '../utils/API'
 export function* handlerNewsRequest() {
   try {
     const news = yield apply(api, api.get, ['feeds/']);
-    console.log(news);
 
     yield put({
       type: a.GET_NEWS_SUCCESS,
@@ -18,18 +17,17 @@ export function* handlerNewsRequest() {
 
   } catch (error) {
 
+    console.error(error)
     yield put({
       type: a.GET_NEWS_FAILURE,
       payload: error
     })
-    console.error(error)
   }
 }
 
 export function* handlerNewsItemRequest(action) {
   try {
     const res = yield apply(api, api.get, [`feeds/${action.payload}`])
-    console.log(res)
 
     yield put({
       type: a.GET_NEWS_ITEM_SUCCESS,
@@ -37,7 +35,12 @@ export function* handlerNewsItemRequest(action) {
     })
 
   } catch (error) {
+
     console.error(error)
+    yield put({
+      type: a.GET_NEWS_ITEM_FAILURE,
+      payload: error,
+    })
   }
 }
 

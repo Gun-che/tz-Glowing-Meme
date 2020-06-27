@@ -2,13 +2,14 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
+
 import { createGetNewsItemRequest, createDeleteNewsRequest, createEditNewsRequest } from '../actions/news'
-import { LoadingFullScreen } from '../components/LoadingComponent/LoadingComponent'
+
 import NewsEdit from '../components/NewsEdit'
+import { LoadingFullScreen } from '../components/LoadingComponent/LoadingComponent'
 
 export const EditNewsContainer = ({
   handlerRequest,
-  data,
   currentData,
   msg,
   isFetching,
@@ -48,12 +49,10 @@ export const EditNewsContainer = ({
 }
 
 EditNewsContainer.propTypes = {
-  data: PropTypes.array.isRequired,
   handlerRequest: PropTypes.func.isRequired,
   msg: PropTypes.string.isRequired,
   isFetching: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
-  deleteRequest: PropTypes.func.isRequired,
   userData: PropTypes.object.isRequired,
   editState: PropTypes.string.isRequired,
   editRequest: PropTypes.func.isRequired,
@@ -61,7 +60,6 @@ EditNewsContainer.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.news.newsData,
   msg: state.news.msg,
   isFetching: state.news.isFetching,
   token: state.user.token,
@@ -72,7 +70,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   handlerRequest: (newsId) => dispatch(createGetNewsItemRequest(newsId)),
-  deleteRequest: (options) => dispatch(createDeleteNewsRequest(options)),
   editRequest: (options) => dispatch(createEditNewsRequest(options))
 })
 

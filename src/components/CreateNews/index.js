@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import * as s from './index.module.scss'
+
 import { LoadingThin } from '../LoadingComponent/LoadingComponent'
+import * as s from './index.module.scss'
 
 const NewsEdit = ({
   token,
@@ -14,7 +15,9 @@ const NewsEdit = ({
   const [content, setContent] = useState('')
 
   const handlerChange = (e) => {
+
     const target = e.target
+
     if (target.tagName === 'INPUT') {
       setTitle(target.value)
       console.log('title change')
@@ -27,6 +30,7 @@ const NewsEdit = ({
   }
 
   function handlerSubmit(event) {
+
     event.preventDefault();
     createRequest({
       token,

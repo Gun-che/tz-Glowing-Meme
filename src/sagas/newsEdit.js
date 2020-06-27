@@ -14,7 +14,6 @@ export function* handlerDeleteNewsRequest(action) {
         "x-access-token": action.payload.token
       },
     }])
-    console.log(res)
 
     yield put({
       type: a.DELETE_NEWS_SUCCESS,

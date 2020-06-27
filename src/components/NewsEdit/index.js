@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link, Redirect } from 'react-router-dom'
-import * as s from './index.module.scss'
+
 import { LoadingThin } from '../LoadingComponent/LoadingComponent'
+import * as s from './index.module.scss'
 
 const NewsEdit = ({
   data,
   token,
-  userData,
   newsId,
   editState,
   msg,
@@ -18,12 +18,13 @@ const NewsEdit = ({
     content: initContent,
   } = data
 
-  console.log(newsId)
   const [title, setTitle] = useState(initTitle)
   const [content, setContent] = useState(initContent)
 
   const handlerChange = (e) => {
+
     const target = e.target
+
     if (target.tagName === 'INPUT') {
       setTitle(target.value)
       console.log('title change')
@@ -36,6 +37,7 @@ const NewsEdit = ({
   }
 
   function handlerSubmit(event) {
+
     event.preventDefault();
     editRequest({
       token,

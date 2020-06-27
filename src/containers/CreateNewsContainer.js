@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import CreateNews from '../components/CreateNews'
+
 import { createCreateNewsRequest } from '../actions/news'
+
+import CreateNews from '../components/CreateNews'
 
 export const CreateNewsContainer = ({
   msg,

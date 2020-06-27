@@ -1,15 +1,17 @@
 import React from 'react'
-import './App.scss'
 import {
   Route,
   BrowserRouter as Router,
   Switch,
 } from 'react-router-dom'
-import HeaderContainer from '../../containers/HeaderContainer'
 import loadable from '@loadable/component'
+
+import HeaderContainer from '../../containers/HeaderContainer'
 import { LoadingConst } from '../LoadingComponent/LoadingComponent'
+import './App.scss'
 
 export const App = () => {
+
   return (
     <Router>
       <div className="App">
@@ -28,6 +30,9 @@ export const App = () => {
           <Route path='/news/:newsId/edit' >
             <NewsEdit />
           </Route>
+          <Route path='/*' >
+            <NotFound />
+          </Route>
           <Route path='/rep'>res </Route>
         </Switch>
       </div>
@@ -39,17 +44,18 @@ const News = loadable(() => import('../../containers/NewsContainer'), {
   fallback: LoadingConst
 })
 
-
 const NewsEdit = loadable(() => import('../../containers/EditNewsContainer'), {
   fallback: LoadingConst
 })
-
 
 const NewsItem = loadable(() => import('../../containers/NewsItemContainer'), {
   fallback: LoadingConst
 })
 
-
 const CreateNews = loadable(() => import('../../containers/CreateNewsContainer'), {
+  fallback: LoadingConst
+})
+
+const NotFound = loadable(() => import('../NotFound/NotFound'), {
   fallback: LoadingConst
 })

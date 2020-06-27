@@ -1,7 +1,7 @@
 import React from 'react'
-import * as s from './NotFound.module.scss'
 import img from './404.jpg'
 
+import * as s from './NotFound.module.scss'
 
 export default () => (
   <div className={s.wrap}>

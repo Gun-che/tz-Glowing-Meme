@@ -32,8 +32,10 @@ export default function reducer(state = iniitState, action) {
         ...state,
         msg: action.payload,
         loggedIn: false
-
       }
+
+
+
     case SIGN_OUT_REQUEST:
       return {
         ...state,
@@ -53,6 +55,8 @@ export default function reducer(state = iniitState, action) {
         msg: action.payload,
         userData: {},
       }
+
+
 
     default:
       return state;
