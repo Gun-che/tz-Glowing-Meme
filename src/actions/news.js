@@ -10,6 +10,9 @@ export const EDIT_NEWS_FAILURE = 'EDIT_NEWS_FAILURE'
 export const DELETE_NEWS_REQUEST = 'DELETE_NEWS_REQUEST'
 export const DELETE_NEWS_SUCCESS = 'DELETE_NEWS_SUCCESS'
 export const DELETE_NEWS_FAILURE = 'DELETE_NEWS_FAILURE'
+export const CREATE_NEWS_REQUEST = 'CREATE_NEWS_REQUEST'
+export const CREATE_NEWS_SUCCESS = 'CREATE_NEWS_SUCCESS'
+export const CREATE_NEWS_FAILURE = 'CREATE_NEWS_FAILURE'
 
 export const createNewsRequest = () => ({
   type: GET_NEWS_REQUEST
@@ -19,6 +22,15 @@ export const createEditNewsRequest = ({ newsId, title, content, token }) => ({
   type: EDIT_NEWS_REQUEST,
   payload: {
     newsId,
+    title,
+    content,
+    token
+  }
+});
+
+export const createCreateNewsRequest = ({ title, content, token }) => ({
+  type: CREATE_NEWS_REQUEST,
+  payload: {
     title,
     content,
     token

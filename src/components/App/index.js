@@ -19,6 +19,9 @@ export const App = () => {
           <Route path='/news' exact>
             <News />
           </Route>
+          <Route path='/news/create' exact>
+            <CreateNews />
+          </Route>
           <Route path='/news/:newsId' exact>
             <NewsItem />
           </Route>
@@ -43,5 +46,10 @@ const NewsEdit = loadable(() => import('../../containers/EditNewsContainer'), {
 
 
 const NewsItem = loadable(() => import('../../containers/NewsItemContainer'), {
+  fallback: LoadingConst
+})
+
+
+const CreateNews = loadable(() => import('../../containers/CreateNewsContainer'), {
   fallback: LoadingConst
 })

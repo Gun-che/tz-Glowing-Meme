@@ -49,6 +49,26 @@ export default function reducer(state = iniitState, action) {
         editState: 'err',
       }
 
+
+
+    case a.CREATE_NEWS_REQUEST:
+      return {
+        ...state,
+        msg: '',
+        editState: 'loading',
+      }
+    case a.CREATE_NEWS_SUCCESS:
+      return {
+        ...state,
+        editState: 'done',
+      }
+    case a.CREATE_NEWS_FAILURE:
+      return {
+        ...state,
+        msg: action.payload,
+        editState: 'err',
+      }
+
     case a.DELETE_NEWS_REQUEST:
       return {
         ...state,

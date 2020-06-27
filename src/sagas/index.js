@@ -1,7 +1,7 @@
 import { all } from 'redux-saga/effects'
 import {
   watchSignInRequest,
-  watchSignOutRequest
+  watchSignOutRequest,
 } from './user'
 import {
   watchNewsRequest,
@@ -9,7 +9,8 @@ import {
 } from './news'
 import {
   watchDeleteNewsRequest,
-  watchEditNewsRequest
+  watchEditNewsRequest,
+  watchCreateNewsRequest,
 } from './newsEdit'
 
 export default function* rootSaga() {
@@ -20,5 +21,6 @@ export default function* rootSaga() {
     watchDeleteNewsRequest(),
     watchNewsItemRequest(),
     watchEditNewsRequest(),
+    watchCreateNewsRequest(),
   ])
 }
