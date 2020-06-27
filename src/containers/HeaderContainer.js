@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Header } from '../components/Header'
+
 import { auth2Init } from '../utils/auth2Init'
 import {
   createRequest,
   createExitRequest
 } from '../actions/user'
+
+import { Header } from '../components/Header'
 
 export const HeaderContainer = ({ signIn, signOut, userData, loggedIn }) => {
 

@@ -1,14 +1,16 @@
 import React from 'react'
-import * as s from './index.module.scss'
+import {
+  Link,
+  useRouteMatch,
+} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faTimesCircle,
   faEdit
 } from '@fortawesome/free-solid-svg-icons'
-import {
-  Link,
-  useRouteMatch,
-} from 'react-router-dom'
+
+import * as s from './index.module.scss'
+
 
 export default ({
   handlerRequest,
@@ -16,6 +18,7 @@ export default ({
   userData,
   data,
   token,
+  loggedIn
 }) => {
 
   const match = useRouteMatch()
@@ -50,10 +53,27 @@ export default ({
 
   return (
     <div className={s.grid}>
-      test news
-      <button onClick={handlerRequest}>update</button>
-      {Object.keys(data).length !== 0 &&
+      <div className={s.buttons}>
+        <button onClick={handlerRequest}>Обновить</button>
+        {loggedIn && <Link to='/news/create'>
+          <button>Создать Новость</button>
+        </Link>}
+      </div>
+      {!data.length && <h2>Записей не найдено!</h2>}
+      {data.length &&
         data.map((i) => {
+
+          const _onCutContent = (string) => {
+
+            if (string.split(' ').length > 50) {
+              return string
+                .split(' ', 50)
+                .join(' ')
+                + ' ...'
+            }
+
+            return string
+          }
 
           const date = new Date(i.createDate)
             .toLocaleDateString('ru', {
@@ -63,6 +83,7 @@ export default ({
               hour: 'numeric',
               minute: 'numeric',
             })
+
           return (
             <div key={i.createDate}>
               {tmpEditIcons(i.creator.displayName, i)}
@@ -71,12 +92,13 @@ export default ({
                 <div className={s.item}>
                   <h2>{i.title}</h2>
                   <h3>{i.creator.displayName} {date}</h3>
-                  <p>{i.content}</p>
+                  <p>{_onCutContent(i.content)}</p>
                 </div>
               </Link>
             </div>
           )
         })
+          .reverse()
       }
     </div>
   )

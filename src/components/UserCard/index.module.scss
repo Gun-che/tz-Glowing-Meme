@@ -2,21 +2,21 @@
   display: flex;
   text-align: left;
   margin: auto;
-  padding: 7px;
-  border: 1px solid ghostwhite;
-  border-radius: 12px;
-  background: gray;
+
   h3 {
     font-size: 12px;
   }
   h4 {
     font-size: 9px;
   }
+  .photo {
+    line-height: 0;
+  }
   img {
     height: 60px;
     width: 60px;
     margin-right: 10px;
     border-radius: 50%;
-    border: 2px solid ghostwhite;
+    border: 3px solid ghostwhite;
   }
 }

@@ -9,6 +9,7 @@ import {
   Link,
   useRouteMatch,
 } from 'react-router-dom'
+
 import * as s from './index.module.scss'
 
 const NewsItem = ({
@@ -46,8 +47,7 @@ const NewsItem = ({
     })
 
 
-
-  const tmpEditIcons = () => {
+  const tmpEditButtons = (edit, remove, className = 'editBtns') => {
 
     const _onDelete = () => {
       deleteRequest({
@@ -58,12 +58,12 @@ const NewsItem = ({
 
     if (name && name === displayName) {
       return (
-        <div className={s.icons}>
+        <div className={s[className]}>
           <Link to={`${match.url}/edit`}>
-            <FontAwesomeIcon icon={faEdit} />
+            {edit}
           </Link>
           <Link to={`/news`} onClick={_onDelete}>
-            <FontAwesomeIcon icon={faTimesCircle} />
+            {remove}
           </Link>
         </div>
       )
@@ -73,15 +73,21 @@ const NewsItem = ({
   return (
     <section className={s.wrap}>
       <div className="news">
-        {tmpEditIcons()}
+        {tmpEditButtons(
+          <FontAwesomeIcon icon={faEdit} />,
+          <FontAwesomeIcon icon={faTimesCircle} />,
+          'icons'
+        )}
         <h2>{title}</h2>
         <h3>{name}</h3>
         <h4>{formatDate}</h4>
         <p>{content}</p>
 
       </div>
-      <button onClick={() => console.log('click')}>Редактировать</button>
-      <button onClick={() => console.log('click')}>Удалить</button>
+      {tmpEditButtons(
+        <button>Редактировать</button>,
+        <button>Удалить</button>
+      )}
     </section>
   )
 }

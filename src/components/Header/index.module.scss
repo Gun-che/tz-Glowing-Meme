@@ -1,3 +1,5 @@
+// @import-normalize;
+
 .header {
   background-color: #282c34;
   min-height: 20vh;
@@ -6,6 +8,24 @@
   justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 10px 20px;
+
+  .logo {
+    padding: 10px;
+    border: 3px solid ghostwhite;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background: rgb(109, 2, 180);
+    color: ghostwhite;
+    // @include const.rounded;
+    display: flex;
+    h3 {
+      // color: $color;
+      font-size: 30px;
+      margin: auto;
+    }
+  }
 
   ul {
     list-style: none;
@@ -26,7 +46,6 @@
 }
 .wrap {
   width: 250px;
-  height: 80px;
 }
 
 .user {

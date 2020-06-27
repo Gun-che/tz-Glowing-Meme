@@ -1,25 +1,18 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import { Link, Redirect } from 'react-router-dom'
 
 import { LoadingThin } from '../LoadingComponent/LoadingComponent'
 import * as s from './index.module.scss'
 
 const NewsEdit = ({
-  data,
   token,
-  newsId,
   editState,
   msg,
-  editRequest,
+  createRequest,
 }) => {
-  const {
-    title: initTitle,
-    content: initContent,
-  } = data
 
-  const [title, setTitle] = useState(initTitle)
-  const [content, setContent] = useState(initContent)
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
 
   const handlerChange = (e) => {
 
@@ -39,11 +32,10 @@ const NewsEdit = ({
   function handlerSubmit(event) {
 
     event.preventDefault();
-    editRequest({
+    createRequest({
       token,
       title,
       content,
-      newsId
     })
   }
 
@@ -75,7 +67,7 @@ const NewsEdit = ({
               <button
                 type='submit'
                 disabled={editState === 'loading'}>Сохранить</button>
-              <Link to={`/news/${newsId}`}>
+              <Link to={`/news`}>
                 <button onClick={() => console.log('click')}>Отмена</button>
               </Link>
             </form>
@@ -86,10 +78,6 @@ const NewsEdit = ({
 
   }
   return tmp()
-}
-
-NewsEdit.propTypes = {
-  data: PropTypes.object.isRequired
 }
 
 export default NewsEdit

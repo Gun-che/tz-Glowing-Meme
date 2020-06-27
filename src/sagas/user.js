@@ -15,11 +15,8 @@ export function* handlerSignInRequest() {
 
     const token = yield apply(response, response.getAuthResponse)
 
-    console.log('getted primary token')
     const id = yield apply(api, api.post, ['auth/google/', {
-
       token: token.id_token
-
     }])
     console.log(id.data.token)
 
@@ -33,21 +30,9 @@ export function* handlerSignInRequest() {
       }
     })
 
-
-    // const news = yield apply(api, api.post, ['feeds/', {
-    //   title: '1',
-    //   content: '123123'
-    // }, {
-    //     headers: {
-    //       "x-access-token": id.data.token
-    //     },
-    //   }])
-
-    // console.log(news)
-
-
   } catch (e) {
     console.log(e)
+
     yield put({
       type: a.SIGN_IN_FAILURE,
       payload: e
@@ -74,7 +59,7 @@ export function* handlerSignOutRequest() {
       type: a.SIGN_OUT_FAILURE,
       payload: e
     })
-    console.log(e)
+    console.error(e)
   }
 }
 
