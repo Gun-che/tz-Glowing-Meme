@@ -21,9 +21,9 @@ export function* handlerDeleteNewsRequest(action) {
       payload: res
     })
 
-    yield put({
-      type: a.GET_NEWS_REQUEST,
-    })
+    // yield put({
+    //   type: a.GET_NEWS_REQUEST,
+    // })
 
   } catch (error) {
 
@@ -48,6 +48,10 @@ export function* handlerEditNewsRequest(action) {
 
     yield put({
       type: a.EDIT_NEWS_SUCCESS,
+    })
+
+    yield put({
+      type: a.GET_NEWS_REQUEST,
     })
 
   } catch (error) {

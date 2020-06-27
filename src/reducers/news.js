@@ -40,7 +40,6 @@ export default function reducer(state = iniitState, action) {
     case a.EDIT_NEWS_SUCCESS:
       return {
         ...state,
-        // newsData: action.payload,
         editState: 'done',
       }
     case a.EDIT_NEWS_FAILURE:
@@ -76,7 +75,7 @@ export default function reducer(state = iniitState, action) {
         msg: '',
         isFetching: true,
         editState: '',
-        currentData: [],
+        // currentData: [],
       }
     case a.GET_NEWS_ITEM_SUCCESS:
       return {

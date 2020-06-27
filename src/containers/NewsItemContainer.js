@@ -27,7 +27,7 @@ export const NewsItemContainer = ({
   const tmp = () => {
     if (currentData.length === 1) {
       return <NewsItem
-        data={currentData}
+        data={currentData[0]}
         token={token}
         deleteRequest={deleteRequest}
         userData={userData}
