@@ -41,7 +41,9 @@ export default ({
       return (
         <div className={s.icons}>
           <Link to={`${match.path}/${i._id}/edit`}>
-            <FontAwesomeIcon icon={faEdit} />
+            <button>
+              <FontAwesomeIcon icon={faEdit} />
+            </button>
           </Link>
           <button onClick={_onDelete}>
             <FontAwesomeIcon icon={faTimesCircle} />
@@ -85,16 +87,21 @@ export default ({
             })
 
           return (
-            <div key={i.createDate}>
-              {tmpEditIcons(i.creator.displayName, i)}
-              <Link
-                to={`${match.path}/${i._id}`}>
-                <div className={s.item}>
-                  <h2>{i.title}</h2>
-                  <h3>{i.creator.displayName} {date}</h3>
-                  <p>{_onCutContent(i.content)}</p>
-                </div>
-              </Link>
+            <div key={i.createDate} className={s.wrapItem}>
+              <div className={s.header}>
+                {tmpEditIcons(i.creator.displayName, i)}
+              </div>
+              <div className={s.body}>
+                <Link
+                  to={`${match.path}/${i._id}`}>
+                  <div>
+                    <h2>{i.title}</h2>
+                    <h3>{i.creator.displayName} {date}</h3>
+                    <p>{_onCutContent(i.content)}</p>
+                  </div>
+                  <p className={s.href}>Читать полностью</p>
+                </Link>
+              </div>
             </div>
           )
         })

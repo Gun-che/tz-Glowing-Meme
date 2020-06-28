@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import { EditForm } from '../EditForm'
 
-import { LoadingThin } from '../LoadingComponent/LoadingComponent'
-import * as s from './index.module.scss'
 
 const NewsEdit = ({
   token,
@@ -45,34 +44,15 @@ const NewsEdit = ({
       return <Redirect to='/news' />
 
     } else {
-      return (
-        <section className={s.wrap}>
-          <div className={s.news}>
-            <div className={s.message}>
-              {editState === 'err' && msg}
-              {editState === 'loading' && <LoadingThin />}
-            </div>
-            <form action="" onSubmit={handlerSubmit}>
-              <input
-                type="text"
-                value={title}
-                onChange={handlerChange}
-                required />
-              <textarea
-                name="content"
-                onChange={handlerChange}
-                value={content}
-                required
-              ></textarea>
-              <button
-                type='submit'
-                disabled={editState === 'loading'}>Сохранить</button>
-              <Link to={`/news`}>
-                <button onClick={() => console.log('click')}>Отмена</button>
-              </Link>
-            </form>
-          </div>
-        </section>
+      return (<EditForm
+        editState={editState}
+        handlerSubmit={handlerSubmit}
+        handlerChange={handlerChange}
+        title={title}
+        content={content}
+        headerTitle='Создать новость'
+        msg={msg}
+      />
       )
     }
 

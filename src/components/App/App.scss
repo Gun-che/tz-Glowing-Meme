@@ -1,7 +1,33 @@
+@import "../../SASS/const";
+@use 'sass:color';
+
+body {
+  color: $dark;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
 }
 a {
   text-decoration: none;
   color: #222;
+}
+button {
+  min-width: 100px;
+  background: $violet;
+  transition: all 0.3s;
+  font-size: 18px;
+  border: none;
+  padding: 3px 7px;
+  color: ghostwhite;
+
+  &:hover,
+  &:focus {
+    box-shadow: inset 200px 0 $violet + #222;
+  }
 }
