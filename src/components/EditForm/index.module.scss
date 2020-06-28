@@ -1,0 +1,66 @@
+@import "../../SASS/const";
+
+.wrap {
+  .message {
+    height: 60px;
+    h2 {
+      background: $dark;
+      color: rgb(204, 73, 73);
+    }
+  }
+  .wrapForm {
+    background: ghostwhite;
+    margin: 40px 20px;
+
+    .header {
+      padding: 7px 20px;
+      border-bottom: 1px solid $violet + #ccc;
+      background: ghostwhite - #070700;
+      height: 42px;
+      position: relative;
+      font-size: 20px;
+      text-align: left;
+      .icons {
+        position: absolute;
+        right: 10px;
+        top: 7px;
+        button {
+          min-width: auto;
+          margin-left: 7px;
+          padding: 5px;
+          line-height: 0;
+          border-radius: 9px;
+        }
+      }
+    }
+    .body {
+      display: flex;
+      flex-direction: column;
+      padding: 0px 20px 30px;
+      text-align: left;
+      input,
+      textarea {
+        border: 1px solid $violet + #ccc;
+        font-size: large;
+        padding: 7px 15px;
+        border-radius: 3px;
+      }
+      label {
+        margin: 20px 0 10px;
+        font-size: 18px;
+      }
+      textarea {
+        resize: none;
+        height: 300px;
+      }
+      .btns {
+        padding-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+        button {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}
