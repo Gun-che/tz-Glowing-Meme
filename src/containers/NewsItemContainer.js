@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import jwt from 'jsonwebtoken'
+
 import { createGetNewsItemRequest, createDeleteNewsRequest } from '../actions/news'
 import ErrorPage from '../components/ErrorPage'
 import { LoadingFullScreen } from '../components/LoadingComponent/LoadingComponent'
 import NewsItem from '../components/NewsItem'
+
 
 export const NewsItemContainer = ({
   handlerRequest,
@@ -14,14 +17,28 @@ export const NewsItemContainer = ({
   isFetching,
   token,
   deleteRequest,
-  userData,
 }) => {
 
   let { newsId } = useParams();
 
+  const [editable, setEditable] = useState(false)
+
   useEffect(() => {
     handlerRequest(newsId)
   }, [handlerRequest, newsId])
+
+  useEffect(() => {
+    const id = token && jwt.decode(token).id;
+    const creatorId = currentData[0] && currentData[0].creator._id
+    console.log(currentData)
+
+    if (id === creatorId) {
+      setEditable(true)
+
+    } else {
+      editable && setEditable(false)
+    }
+  }, [currentData, editable, token])
 
   const tmp = () => {
     if (currentData.length === 1) {
@@ -29,7 +46,7 @@ export const NewsItemContainer = ({
         data={currentData[0]}
         token={token}
         deleteRequest={deleteRequest}
-        userData={userData}
+        editable={editable}
       />
 
     } else if (msg) {
@@ -53,7 +70,6 @@ NewsItemContainer.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
   deleteRequest: PropTypes.func.isRequired,
-  userData: PropTypes.object.isRequired,
   currentData: PropTypes.array.isRequired,
 }
 
@@ -62,7 +78,6 @@ const mapStateToProps = (state) => ({
   msg: state.news.msg,
   isFetching: state.news.isFetching,
   token: state.user.token,
-  userData: state.user.userData,
 })
 
 const mapDispatchToProps = dispatch => ({

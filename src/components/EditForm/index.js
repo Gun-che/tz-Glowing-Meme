@@ -11,14 +11,17 @@ export const EditForm = ({
   title,
   content,
   headerTitle,
-  msg
+  msg,
+  validMsg,
+  newsId = '',
 }) => {
-
+  console.log(newsId)
   return (
     <section className={s.wrap}>
       <div className={s.news}>
         <div className={s.message}>
-          {editState === 'err' && <h2>{msg}</h2>}
+          {editState === 'err' && <h2>Ошибка запроса! ({msg})</h2>}
+          {validMsg && <h2>{validMsg}</h2>}
           {editState === 'loading' && <LoadingThin />}
         </div>
         <div className={s.wrapForm}>
@@ -29,22 +32,25 @@ export const EditForm = ({
               type="text"
               value={title}
               onChange={handlerChange}
-              required
               id="title" />
             <label htmlFor="content">Контент</label>
             <textarea
               id="content"
               onChange={handlerChange}
               value={content}
-              required
             ></textarea>
             <div className={s.btns}>
               <button
                 type='submit'
                 disabled={editState === 'loading'}>Сохранить</button>
-              <Link to={`/news`}>
-                <button onClick={() => console.log('click')}>Отмена</button>
-              </Link>
+              {newsId ?
+                <Link to={`/news/${newsId}`}>
+                  <button onClick={() => console.log('click')}>Отмена</button>
+                </Link> :
+                <Link to={`/news`}>
+                  <button onClick={() => console.log('click')}>Отмена</button>
+                </Link>
+              }
             </div>
           </form>
         </div>

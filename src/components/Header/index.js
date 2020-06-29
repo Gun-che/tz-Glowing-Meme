@@ -4,7 +4,13 @@ import { NavLink } from 'react-router-dom'
 import UserCard from '../UserCard'
 import * as s from './index.module.scss'
 
-export const Header = ({ userData, loggedIn, signIn, signOut }) => {
+export const Header = ({
+  userData,
+  loggedIn,
+  signIn,
+  signOut,
+  msg,
+}) => {
 
   useEffect(() => {
 
@@ -32,6 +38,7 @@ export const Header = ({ userData, loggedIn, signIn, signOut }) => {
       <div className={s.user}>
         <div className={s.wrap}>
           {loggedIn && Object.keys(userData).length !== 0 && <UserCard userData={userData} />}
+          {msg && <h3>ошибка авторизации, попробуйте снова{msg}</h3>}
         </div>
         {loggedIn && <button onClick={signOut}>Sign Out</button>}
         {!loggedIn && <button onClick={signIn}>Sign in</button>}

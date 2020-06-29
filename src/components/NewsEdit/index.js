@@ -16,8 +16,9 @@ const NewsEdit = ({
     content: initContent,
   } = data
 
-  const [title, setTitle] = useState(initTitle)
-  const [content, setContent] = useState(initContent)
+  const [title, setTitle] = useState(initTitle);
+  const [content, setContent] = useState(initContent);
+  const [validMsg, setValidMsg] = useState('')
 
   const handlerChange = (e) => {
 
@@ -37,18 +38,27 @@ const NewsEdit = ({
   function handlerSubmit(event) {
 
     event.preventDefault();
-    editRequest({
-      token,
-      title,
-      content,
-      newsId
-    })
+
+    if (title && content) {
+
+      if (validMsg) setValidMsg('');
+
+      editRequest({
+        token,
+        title,
+        content,
+        newsId
+      })
+
+    } else {
+      setValidMsg('Новость должна содержать заголовок и контент!');
+    }
   }
 
   const tmp = () => {
 
     if (editState === 'done') {
-      return <Redirect to='/news' />
+      return <Redirect to={`/news/${newsId}`} />
 
     } else {
       return (<EditForm
@@ -59,6 +69,8 @@ const NewsEdit = ({
         content={content}
         headerTitle='Изменить новость'
         msg={msg}
+        validMsg={validMsg}
+        newsId={newsId}
       />
       )
     }

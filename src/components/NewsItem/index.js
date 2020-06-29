@@ -11,19 +11,14 @@ import {
 } from 'react-router-dom'
 
 import * as s from './index.module.scss'
+import dateFormater from '../../utils/dateFormater'
 
 const NewsItem = ({
   data,
   token,
   deleteRequest,
-  userData,
+  editable,
 }) => {
-
-  let name = '';
-
-  if (userData.getName) {
-    name = userData.getName()
-  }
 
   const match = useRouteMatch()
   console.log(match)
@@ -37,63 +32,70 @@ const NewsItem = ({
     }
   } = data
 
-  const formatDate = new Date(createDate)
-    .toLocaleDateString('ru', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-    })
+  const formatDate = dateFormater(createDate)
 
 
-  const tmpEditButtons = (edit, remove, className = 'editBtns') => {
+  const tmpEditButtons = (edit, remove) => {
 
-    const _onDelete = () => {
-      deleteRequest({
-        newsId: data._id,
-        token: token,
-      })
+    const _onDelete = (e) => {
+      if (window.confirm('Уверены, что желаете удалить новость?')) {
+        deleteRequest({
+          newsId: data._id,
+          token: token,
+        })
+      } else {
+        e.preventDefault()
+      }
     }
 
-    if (name && name === displayName) {
+    if (editable) {
       return (
-        <div className={s[className]}>
+        <>
           <Link to={`${match.url}/edit`}>
-            {edit}
+            <button tabIndex='-1'>{edit}</button>
           </Link>
           <Link to={`/news`} onClick={_onDelete}>
-            {remove}
+            <button tabIndex='-1'>{remove}</button>
           </Link>
-        </div>
+        </>
       )
     }
   }
 
   return (
     <section className={s.wrap}>
-      <div className="news">
-        {tmpEditButtons(
-          <FontAwesomeIcon icon={faEdit} />,
-          <FontAwesomeIcon icon={faTimesCircle} />,
-          'icons'
-        )}
-        <h2>{title}</h2>
-        <h3>{name}</h3>
-        <h4>{formatDate}</h4>
-        <p>{content}</p>
-
+      <div className={s.news}>
+        <div className={s.header}>
+          <div className={s.icons}>
+            {tmpEditButtons(
+              <FontAwesomeIcon icon={faEdit} />,
+              <FontAwesomeIcon icon={faTimesCircle} />
+            )}
+          </div>
+        </div>
+        <div className={s.body}>
+          <h2>{title}</h2>
+          <h3>{displayName}</h3>
+          <h4>{formatDate}</h4>
+          <p>{content}</p>
+          <div className={s.editBtns}>
+            {tmpEditButtons(
+              'Редактировать',
+              'Удалить'
+            )}
+            <Link to='/news'>
+              <button>Назад</button>
+            </Link>
+          </div>
+        </div>
       </div>
-      {tmpEditButtons(
-        <button>Редактировать</button>,
-        <button>Удалить</button>
-      )}
     </section>
   )
 }
 
 NewsItem.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  editable: PropTypes.bool.isRequired,
 }
 
 export default NewsItem
