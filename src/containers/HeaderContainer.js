@@ -10,7 +10,13 @@ import {
 
 import { Header } from '../components/Header'
 
-export const HeaderContainer = ({ signIn, signOut, userData, loggedIn }) => {
+export const HeaderContainer = ({
+  signIn,
+  signOut,
+  userData,
+  loggedIn,
+  msg,
+}) => {
 
   useEffect(() => {
     auth2Init()
@@ -23,6 +29,7 @@ export const HeaderContainer = ({ signIn, signOut, userData, loggedIn }) => {
         signOut={signOut}
         loggedIn={loggedIn}
         userData={userData}
+        msg={msg}
       />
     </div>
   )
@@ -33,11 +40,13 @@ HeaderContainer.propTypes = {
   signOut: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   userData: PropTypes.object.isRequired,
+  msg: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   loggedIn: state.user.loggedIn,
-  userData: state.user.userData
+  userData: state.user.userData,
+  msg: state.user.msg
 })
 
 const mapDispatchToProps = dispatch => ({

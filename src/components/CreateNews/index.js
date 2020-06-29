@@ -12,6 +12,7 @@ const NewsEdit = ({
 
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [validMsg, setValidMsg] = useState('')
 
   const handlerChange = (e) => {
 
@@ -29,13 +30,20 @@ const NewsEdit = ({
   }
 
   function handlerSubmit(event) {
-
     event.preventDefault();
-    createRequest({
-      token,
-      title,
-      content,
-    })
+
+    if (title && content) {
+
+      if (validMsg) setValidMsg('')
+      createRequest({
+        token,
+        title,
+        content,
+      })
+
+    } else {
+      setValidMsg('Новость должна содержать заголовок и контент!');
+    }
   }
 
   const tmp = () => {
@@ -52,6 +60,7 @@ const NewsEdit = ({
         content={content}
         headerTitle='Создать новость'
         msg={msg}
+        validMsg={validMsg}
       />
       )
     }

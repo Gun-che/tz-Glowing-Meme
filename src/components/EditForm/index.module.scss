@@ -2,15 +2,21 @@
 
 .wrap {
   .message {
+    margin: 10px auto;
     height: 60px;
+    max-width: 960px;
     h2 {
+      font-size: 20px;
+      margin: 0;
+      padding: 15px;
       background: $dark;
       color: rgb(204, 73, 73);
     }
   }
   .wrapForm {
     background: ghostwhite;
-    margin: 40px 20px;
+    margin: 0px auto 40px;
+    max-width: 960px;
 
     .header {
       padding: 7px 20px;

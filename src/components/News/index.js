@@ -10,6 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 import * as s from './index.module.scss'
+import dateFormater from '../../utils/dateFormater'
 
 
 export default ({
@@ -28,17 +29,19 @@ export default ({
     console.log(creatorId, id)
 
     const _onDelete = () => {
-      deleteRequest({
-        newsId: i._id,
-        token: token,
-      })
+      if (window.confirm('Уверены, что желаете удалить новость?')) {
+        deleteRequest({
+          newsId: i._id,
+          token: token,
+        })
+      }
     }
 
     if (id && id === creatorId) {
       return (
         <div className={s.icons}>
           <Link to={`${match.path}/${i._id}/edit`}>
-            <button>
+            <button tabIndex='-1'>
               <FontAwesomeIcon icon={faEdit} />
             </button>
           </Link>
@@ -74,14 +77,7 @@ export default ({
             return string
           }
 
-          const date = new Date(i.createDate)
-            .toLocaleDateString('ru', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: 'numeric',
-              minute: 'numeric',
-            })
+          const date = dateFormater(i.createDate)
 
           return (
             <div key={i.createDate} className={s.wrapItem}>
