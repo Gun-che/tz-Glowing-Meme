@@ -4,25 +4,26 @@ import {
   SIGN_IN_FAILURE,
   SIGN_OUT_REQUEST,
   SIGN_OUT_SUCCESS,
-  SIGN_OUT_FAILURE
+  SIGN_OUT_FAILURE,
 } from '../actions/user'
 
-const iniitState = {
+export const initState = {
   userData: {},
   loggedIn: JSON.parse(localStorage.getItem('loggedIn')) || false,
   msg: '',
-  token: ''
+  token: '',
 }
 
-export default function reducer(state = iniitState, action) {
+export default function reducer(state = initState, action) {
   switch (action.type) {
     case SIGN_IN_REQUEST:
       return {
         ...state,
-        msg: ''
+        msg: '',
       }
     case SIGN_IN_SUCCESS:
       return {
+        ...state,
         userData: action.payload.profile,
         loggedIn: true,
         token: action.payload.token
@@ -44,7 +45,6 @@ export default function reducer(state = iniitState, action) {
     case SIGN_OUT_SUCCESS:
       return {
         ...state,
-        msg: '',
         userData: {},
         loggedIn: false,
         token: ''
@@ -53,7 +53,6 @@ export default function reducer(state = iniitState, action) {
       return {
         ...state,
         msg: action.payload,
-        userData: {},
       }
 
 

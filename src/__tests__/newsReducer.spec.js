@@ -19,6 +19,28 @@ describe('news reducers', () => {
       })
     })
 
+    it('GET_NEWS_REQUEST after error', () => {
+      const action = {
+        type: a.GET_NEWS_REQUEST,
+      }
+
+      const initState = {
+        newsData: [],
+        isFetching: false,
+        msg: 'err',
+        editState: '',
+        currentData: []
+      }
+
+      expect(reducer(initState, action)).toEqual({
+        ...initState,
+        msg: '',
+        isFetching: true,
+        editState: '',
+        currentData: []
+      })
+    })
+
     it(a.GET_NEWS_SUCCESS, () => {
       const action = {
         type: a.GET_NEWS_SUCCESS,
@@ -69,6 +91,27 @@ describe('news reducers', () => {
     it(a.GET_NEWS_ITEM_REQUEST, () => {
       const action = {
         type: a.GET_NEWS_ITEM_REQUEST,
+      }
+
+      expect(reducer(initState, action)).toEqual({
+        ...initState,
+        msg: '',
+        isFetching: true,
+        editState: '',
+      })
+    })
+
+    it('GET_NEWS_ITEM_REQUEST after error', () => {
+      const action = {
+        type: a.GET_NEWS_ITEM_REQUEST,
+      }
+
+      const initState = {
+        newsData: [],
+        isFetching: false,
+        msg: 'err',
+        editState: '',
+        currentData: []
       }
 
       expect(reducer(initState, action)).toEqual({
