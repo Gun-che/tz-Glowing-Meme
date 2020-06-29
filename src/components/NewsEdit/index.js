@@ -58,7 +58,7 @@ const NewsEdit = ({
   const tmp = () => {
 
     if (editState === 'done') {
-      return <Redirect to='/news' />
+      return <Redirect to={`/news/${newsId}`} />
 
     } else {
       return (<EditForm
@@ -70,6 +70,7 @@ const NewsEdit = ({
         headerTitle='Изменить новость'
         msg={msg}
         validMsg={validMsg}
+        newsId={newsId}
       />
       )
     }

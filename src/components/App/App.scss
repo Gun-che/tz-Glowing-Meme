@@ -25,7 +25,14 @@ button {
   border: none;
   padding: 3px 7px;
   color: ghostwhite;
-
+  &:disabled {
+    color: rgb(180, 205, 230);
+    background: slategray;
+    &:hover,
+    &:focus {
+      box-shadow: none;
+    }
+  }
   &:hover,
   &:focus {
     box-shadow: inset 200px 0 $violet + #222;

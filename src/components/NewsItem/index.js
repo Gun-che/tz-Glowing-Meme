@@ -88,7 +88,6 @@ const NewsItem = ({
             </Link>
           </div>
         </div>
-
       </div>
     </section>
   )

@@ -13,8 +13,9 @@ export const EditForm = ({
   headerTitle,
   msg,
   validMsg,
+  newsId = '',
 }) => {
-
+  console.log(newsId)
   return (
     <section className={s.wrap}>
       <div className={s.news}>
@@ -42,9 +43,14 @@ export const EditForm = ({
               <button
                 type='submit'
                 disabled={editState === 'loading'}>Сохранить</button>
-              <Link to={`/news`}>
-                <button onClick={() => console.log('click')}>Отмена</button>
-              </Link>
+              {newsId ?
+                <Link to={`/news/${newsId}`}>
+                  <button onClick={() => console.log('click')}>Отмена</button>
+                </Link> :
+                <Link to={`/news`}>
+                  <button onClick={() => console.log('click')}>Отмена</button>
+                </Link>
+              }
             </div>
           </form>
         </div>
