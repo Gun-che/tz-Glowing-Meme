@@ -15,20 +15,17 @@ import * as s from './index.module.scss'
 export default ({
   handlerRequest,
   deleteRequest,
-  userData,
   data,
   token,
-  loggedIn
+  loggedIn,
+  id,
 }) => {
 
   const match = useRouteMatch()
-  let name = '';
 
-  if (userData.getName) {
-    name = userData.getName()
-  }
+  const tmpEditIcons = (creatorId, i) => {
 
-  const tmpEditIcons = (creatorName, i) => {
+    console.log(creatorId, id)
 
     const _onDelete = () => {
       deleteRequest({
@@ -37,7 +34,7 @@ export default ({
       })
     }
 
-    if (name && name === creatorName) {
+    if (id && id === creatorId) {
       return (
         <div className={s.icons}>
           <Link to={`${match.path}/${i._id}/edit`}>
@@ -89,7 +86,7 @@ export default ({
           return (
             <div key={i.createDate} className={s.wrapItem}>
               <div className={s.header}>
-                {tmpEditIcons(i.creator.displayName, i)}
+                {tmpEditIcons(i.creator._id, i)}
               </div>
               <div className={s.body}>
                 <Link

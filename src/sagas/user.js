@@ -18,7 +18,7 @@ export function* handlerSignInRequest() {
     const id = yield apply(api, api.post, ['auth/google/', {
       token: token.id_token
     }])
-    console.log(id.data.token)
+    console.log(id)
 
     localStorage.setItem('loggedIn', 'true');
 

@@ -3,7 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
-import { createGetNewsItemRequest, createDeleteNewsRequest, createEditNewsRequest } from '../actions/news'
+import {
+  createGetNewsItemRequest,
+  createEditNewsRequest
+} from '../actions/news'
 
 import NewsEdit from '../components/NewsEdit'
 import { LoadingFullScreen } from '../components/LoadingComponent/LoadingComponent'
