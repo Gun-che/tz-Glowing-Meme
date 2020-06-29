@@ -1,6 +1,6 @@
 import * as a from '../actions/news'
 
-const iniitState = {
+export const initState = {
   newsData: [],
   isFetching: false,
   msg: '',
@@ -8,7 +8,7 @@ const iniitState = {
   currentData: []
 }
 
-export default function reducer(state = iniitState, action) {
+export default function reducer(state = initState, action) {
 
   switch (action.type) {
     case a.GET_NEWS_REQUEST:
