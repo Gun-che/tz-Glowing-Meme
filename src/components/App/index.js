@@ -19,7 +19,9 @@ export const App = () => {
       <div className="App">
         <HeaderContainer />
         <Switch>
-          <Route path='/' exact>home </Route>
+          <Route path='/' exact>
+            <Home />
+          </Route>
           <Route path='/news' exact>
             <News />
           </Route>
@@ -41,6 +43,10 @@ export const App = () => {
     </Router>
   )
 }
+
+const Home = loadable(() => import('../Home'), {
+  fallback: LoadingConst
+})
 
 const News = loadable(() => import('../../containers/NewsContainer'), {
   fallback: LoadingConst
