@@ -80,7 +80,12 @@ const NewsEdit = ({
 }
 
 NewsEdit.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.shape({
+    creator: PropTypes.object,
+    _id: PropTypes.string,
+    title: PropTypes.string,
+    content: PropTypes.string,
+  }).isRequired
 }
 
 export default NewsEdit

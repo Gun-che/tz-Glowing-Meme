@@ -13,7 +13,7 @@ import * as s from './index.module.scss'
 import dateFormater from '../../utils/dateFormater'
 
 
-export default ({
+export const News = ({
   handlerRequest,
   deleteRequest,
   data,
@@ -41,12 +41,12 @@ export default ({
       return (
         <div className={s.icons}>
           <Link to={`${match.path}/${i._id}/edit`}>
-            <button tabIndex='-1'>
+            <button tabIndex='-1' title="Редактировать">
               <FontAwesomeIcon icon={faEdit} />
             </button>
           </Link>
           <button onClick={_onDelete}>
-            <FontAwesomeIcon icon={faTimesCircle} />
+            <FontAwesomeIcon icon={faTimesCircle} title="Удалить" />
           </button>
         </div>
       )

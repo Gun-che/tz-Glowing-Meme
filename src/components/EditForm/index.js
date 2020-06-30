@@ -15,7 +15,13 @@ export const EditForm = ({
   validMsg,
   newsId = '',
 }) => {
-  console.log(newsId)
+
+  const handlerClick = (e) => {
+    if (!window.confirm('Вы уверены? Несохранённые изменения будут утеряны!')) {
+      e.preventDefault()
+    }
+  }
+
   return (
     <section className={s.wrap}>
       <div className={s.news}>
@@ -44,11 +50,15 @@ export const EditForm = ({
                 type='submit'
                 disabled={editState === 'loading'}>Сохранить</button>
               {newsId ?
-                <Link to={`/news/${newsId}`}>
-                  <button onClick={() => console.log('click')}>Отмена</button>
+                <Link
+                  to={`/news/${newsId}`}
+                  onClick={handlerClick}>
+                  <button>Отмена</button>
                 </Link> :
-                <Link to={`/news`}>
-                  <button onClick={() => console.log('click')}>Отмена</button>
+                <Link
+                  to={`/news`}
+                  onClick={handlerClick}>
+                  <button>Отмена</button>
                 </Link>
               }
             </div>

@@ -10,7 +10,9 @@ import HeaderContainer from '../../containers/HeaderContainer'
 import { LoadingConst } from '../LoadingComponent/LoadingComponent'
 import './App.scss'
 
+
 export const App = () => {
+
 
   return (
     <Router>

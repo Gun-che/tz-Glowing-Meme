@@ -52,10 +52,16 @@ const NewsItem = ({
       return (
         <>
           <Link to={`${match.url}/edit`}>
-            <button tabIndex='-1'>{edit}</button>
+            <button
+              tabIndex='-1'
+              title="Редактировать"
+            >{edit}</button>
           </Link>
           <Link to={`/news`} onClick={_onDelete}>
-            <button tabIndex='-1'>{remove}</button>
+            <button
+              tabIndex='-1'
+              title="Удалить"
+            >{remove}</button>
           </Link>
         </>
       )
@@ -84,7 +90,7 @@ const NewsItem = ({
               'Удалить'
             )}
             <Link to='/news'>
-              <button>Назад</button>
+              <button title="Назад">Назад</button>
             </Link>
           </div>
         </div>

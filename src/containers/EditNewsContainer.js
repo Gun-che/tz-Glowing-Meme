@@ -59,7 +59,7 @@ EditNewsContainer.propTypes = {
   userData: PropTypes.object.isRequired,
   editState: PropTypes.string.isRequired,
   editRequest: PropTypes.func.isRequired,
-  currentData: PropTypes.array.isRequired
+  currentData: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 const mapStateToProps = (state) => ({

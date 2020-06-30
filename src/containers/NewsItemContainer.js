@@ -70,7 +70,7 @@ NewsItemContainer.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
   deleteRequest: PropTypes.func.isRequired,
-  currentData: PropTypes.array.isRequired,
+  currentData: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 const mapStateToProps = (state) => ({
