@@ -8,8 +8,6 @@
 
 ### Использован [бэкэнд](https://github.com/maxfarseer/backend-tz3)
 
-###
-
 ---
 
 ## Проблемные места
