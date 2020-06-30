@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 
 import { LoadingFullScreen } from '../components/LoadingComponent/LoadingComponent'
 import ErrorPage from '../components/ErrorPage'
-import News from '../components/News'
+import { News } from '../components/News'
 
 
 export const NewsContainer = ({
@@ -54,7 +54,7 @@ export const NewsContainer = ({
 
 NewsContainer.propTypes = {
   handlerRequest: PropTypes.func.isRequired,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   msg: PropTypes.string.isRequired,
   deleteRequest: PropTypes.func.isRequired,
