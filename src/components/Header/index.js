@@ -14,9 +14,9 @@ export const Header = ({
 
   useEffect(() => {
 
-    if (loggedIn && Object.keys(userData).length === 0) {
-      window.onload = () => signIn();
-    }
+    // if (loggedIn && Object.keys(userData).length === 0) {
+    //   window.onload = () => signIn();
+    // }
   }, [loggedIn, signIn, userData])
 
   return (

@@ -20,7 +20,9 @@ export function* handlerSignInRequest() {
     }])
     console.log(id)
 
-    localStorage.setItem('loggedIn', 'true');
+    localStorage.setItem('loggedInGoogleSignIn', 'true');
+    localStorage.setItem('tokenGoogle', id.data.token);
+    localStorage.setItem('authTokenGoogle', token.id_token);
 
     yield put({
       type: a.SIGN_IN_SUCCESS,
@@ -47,7 +49,8 @@ export function* handlerSignOutRequest() {
 
     const response = yield apply(auth2, auth2.signOut)
 
-    localStorage.setItem('loggedIn', 'false');
+    localStorage.setItem('loggedInGoogleSignIn', 'false');
+    localStorage.setItem('tokenGoogle', '');
 
     yield put({
       type: a.SIGN_OUT_SUCCESS

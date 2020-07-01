@@ -5,12 +5,10 @@ import {
   Switch,
 } from 'react-router-dom'
 import loadable from '@loadable/component'
-import { CSSTransition } from 'react-transition-group'
 
 import HeaderContainer from '../../containers/HeaderContainer'
 import { LoadingConst } from '../LoadingComponent'
 import './App.scss'
-import ErrorPage from '../ErrorPage'
 
 
 const Home = loadable(() => import('../Home'), {

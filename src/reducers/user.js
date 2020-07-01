@@ -9,9 +9,9 @@ import {
 
 export const initState = {
   userData: {},
-  loggedIn: JSON.parse(localStorage.getItem('loggedIn')) || false,
+  loggedIn: JSON.parse(localStorage.getItem('loggedInGoogleSignIn')) || false,
   msg: '',
-  token: '',
+  token: localStorage.getItem('tokenGoogle') || '',
 }
 
 export default function reducer(state = initState, action) {
