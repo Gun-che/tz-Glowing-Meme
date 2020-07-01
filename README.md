@@ -12,4 +12,4 @@
 
 ## Проблемные места
 
-- Тестирование Routera (Error: Uncaught [TypeError: Cannot read property 'location' of undefined])
+- Тестирование Router'a (Error: Uncaught [TypeError: Cannot read property 'location' of undefined])
