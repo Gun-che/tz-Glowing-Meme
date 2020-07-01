@@ -38,3 +38,26 @@ button {
     box-shadow: inset 200px 0 $violet + #222;
   }
 }
+
+.container {
+  animation: fadeInContent 0.4s;
+}
+
+.page {
+  animation: fadeInContentLight 0.4s;
+}
+
+@keyframes fadeInContent {
+  from {
+    margin-top: 2vh;
+    filter: blur(2px);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInContentLight {
+  from {
+    filter: blur(2px);
+    opacity: 0;
+  }
+}

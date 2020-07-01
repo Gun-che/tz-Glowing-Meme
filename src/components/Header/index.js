@@ -14,13 +14,13 @@ export const Header = ({
 
   useEffect(() => {
 
-    if (loggedIn && Object.keys(userData).length === 0) {
-      window.onload = () => signIn();
-    }
+    // if (loggedIn && Object.keys(userData).length === 0) {
+    //   window.onload = () => signIn();
+    // }
   }, [loggedIn, signIn, userData])
 
   return (
-    <header className={s.header}>
+    <header className={s.header + ' container'}>
       <div className={s.logo}>
         <h3>W</h3>
       </div>

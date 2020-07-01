@@ -54,7 +54,7 @@ export const News = ({
   }
 
   return (
-    <div className={s.grid}>
+    <div className={s.grid + ' page'}>
       <div className={s.buttons}>
         <button onClick={handlerRequest}>Обновить</button>
         {loggedIn && <Link to='/news/create'>

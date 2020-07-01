@@ -9,7 +9,7 @@ import {
 } from '../actions/news'
 
 import NewsEdit from '../components/NewsEdit'
-import { LoadingFullScreen } from '../components/LoadingComponent/LoadingComponent'
+import { LoadingFullScreen } from '../components/LoadingComponent'
 
 export const EditNewsContainer = ({
   handlerRequest,

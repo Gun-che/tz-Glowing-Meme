@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { createNewsRequest, createDeleteNewsRequest } from '../actions/news'
 import jwt from 'jsonwebtoken'
 
-import { LoadingFullScreen } from '../components/LoadingComponent/LoadingComponent'
+import { LoadingFullScreen } from '../components/LoadingComponent'
 import ErrorPage from '../components/ErrorPage'
 import { News } from '../components/News'
 
@@ -35,7 +35,7 @@ export const NewsContainer = ({
       return <LoadingFullScreen />
 
     } else if (msg) {
-      return <ErrorPage err={msg} />
+      return <ErrorPage msg={msg} err='Error!' />
 
     } else {
       return <News
