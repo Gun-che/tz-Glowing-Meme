@@ -11,7 +11,6 @@ import {
 
 import * as s from './index.module.scss'
 import dateFormater from '../../utils/dateFormater'
-import { Transition } from '../../HOC/animationFrame'
 
 
 export const News = ({
