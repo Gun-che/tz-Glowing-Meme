@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 
 import { createGetNewsItemRequest, createDeleteNewsRequest } from '../actions/news'
 import ErrorPage from '../components/ErrorPage'
-import { LoadingFullScreen } from '../components/LoadingComponent/LoadingComponent'
+import { LoadingFullScreen } from '../components/LoadingComponent'
 import NewsItem from '../components/NewsItem'
 
 

@@ -5,44 +5,13 @@ import {
   Switch,
 } from 'react-router-dom'
 import loadable from '@loadable/component'
+import { CSSTransition } from 'react-transition-group'
 
 import HeaderContainer from '../../containers/HeaderContainer'
-import { LoadingConst } from '../LoadingComponent/LoadingComponent'
+import { LoadingConst } from '../LoadingComponent'
 import './App.scss'
+import ErrorPage from '../ErrorPage'
 
-
-export const App = () => {
-
-
-  return (
-    <Router>
-      <div className="App">
-        <HeaderContainer />
-        <Switch>
-          <Route path='/' exact>
-            <Home />
-          </Route>
-          <Route path='/news' exact>
-            <News />
-          </Route>
-          <Route path='/news/create' exact>
-            <CreateNews />
-          </Route>
-          <Route path='/news/:newsId' exact>
-            <NewsItem />
-          </Route>
-          <Route path='/news/:newsId/edit' >
-            <NewsEdit />
-          </Route>
-          <Route path='/*' >
-            <NotFound />
-          </Route>
-          <Route path='/rep'>res </Route>
-        </Switch>
-      </div>
-    </Router>
-  )
-}
 
 const Home = loadable(() => import('../Home'), {
   fallback: LoadingConst
@@ -64,6 +33,37 @@ const CreateNews = loadable(() => import('../../containers/CreateNewsContainer')
   fallback: LoadingConst
 })
 
-const NotFound = loadable(() => import('../NotFound/NotFound'), {
+const NotFound = loadable(() => import('../NotFound'), {
   fallback: LoadingConst
 })
+
+const routes = [
+  { path: '/', name: 'Home', Component: Home },
+  { path: '/news', name: 'News', Component: News },
+  { path: '/news/create', name: 'CreateNews', Component: CreateNews },
+  { path: '/news/:newsId', name: 'NewsItem', Component: NewsItem },
+  { path: '/news/:newsId/edit', name: 'NewsEdit', Component: NewsEdit },
+  { path: '/*', name: 'NotFound', Component: NotFound },
+]
+
+export const App = () => {
+
+
+  return (
+    <Router>
+      <div className="App">
+        <HeaderContainer />
+        <Switch>
+          {routes.map(({ path, Component }) => (
+            <Route key={path} exact path={path}>
+              {() => (
+                <Component />
+              )}
+            </Route>
+          ))}
+        </Switch>
+      </div>
+    </Router>
+  )
+}
+

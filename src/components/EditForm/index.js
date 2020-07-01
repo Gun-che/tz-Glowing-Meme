@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { LoadingThin } from '../LoadingComponent/LoadingComponent'
+import { LoadingThin } from '../LoadingComponent'
 import * as s from './index.module.scss'
 
 export const EditForm = ({
@@ -23,7 +23,7 @@ export const EditForm = ({
   }
 
   return (
-    <section className={s.wrap}>
+    <section className={s.wrap + ' container'}>
       <div className={s.news}>
         <div className={s.message}>
           {editState === 'err' && <h2>Ошибка запроса! ({msg})</h2>}

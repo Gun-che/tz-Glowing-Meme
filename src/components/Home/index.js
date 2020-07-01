@@ -3,7 +3,7 @@ import * as s from './index.module.scss'
 
 export default () => {
   return (
-    <div className={s.wrap}>
+    <div className={s.wrap + ' container'}>
       <h1>
         Добро пожаловать в Glowing meme!
       </h1>

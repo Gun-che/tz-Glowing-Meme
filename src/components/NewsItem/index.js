@@ -69,7 +69,7 @@ const NewsItem = ({
   }
 
   return (
-    <section className={s.wrap}>
+    <section className={s.wrap + ' container'}>
       <div className={s.news}>
         <div className={s.header}>
           <div className={s.icons}>

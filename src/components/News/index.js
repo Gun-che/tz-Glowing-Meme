@@ -11,6 +11,7 @@ import {
 
 import * as s from './index.module.scss'
 import dateFormater from '../../utils/dateFormater'
+import { Transition } from '../../HOC/animationFrame'
 
 
 export const News = ({
@@ -54,7 +55,7 @@ export const News = ({
   }
 
   return (
-    <div className={s.grid}>
+    <div className={s.grid + ' page'}>
       <div className={s.buttons}>
         <button onClick={handlerRequest}>Обновить</button>
         {loggedIn && <Link to='/news/create'>
