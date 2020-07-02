@@ -11,7 +11,7 @@ import { writeLocalStorage } from '../utils/localStorageHelper'
 export function* handlerTokenRefreshRequest() {
   try {
     const auth2 = yield call(window.gapi.auth2.getAuthInstance);
-
+    console.log('yo!', auth2.currentUser)
     const currentUser = auth2.currentUser;
     const response = yield apply(currentUser, currentUser.get);
 
@@ -38,6 +38,8 @@ export function* handlerTokenRefreshRequest() {
       }
     })
 
+    yield localStorage.setItem('requestInProcess', 'false');
+
   } catch (e) {
     console.log(e)
 
@@ -51,6 +53,7 @@ export function* handlerTokenRefreshRequest() {
 
 
 export function* watchTokenRefreshRequest() {
+  console.log('yo!')
 
   yield takeEvery(a.REFRESH_TOKEN_REQUEST, handlerTokenRefreshRequest)
 }

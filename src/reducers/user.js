@@ -67,7 +67,7 @@ export default function reducer(state = initState, action) {
     case a.REFRESH_TOKEN_FAILURE:
       return {
         ...state,
-        msg: action.payload,
+        msg: action.payload.message,
         authToken: '',
         token: '',
         loggedIn: false,

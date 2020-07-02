@@ -11,10 +11,11 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = createStore(
   rootReducer,
   applyMiddleware(
+    checkTokenRefresh,
     sagaMiddleware,
     logger,
-    checkTokenRefresh,
   )
 )
 
 sagaMiddleware.run(rootSaga)
+

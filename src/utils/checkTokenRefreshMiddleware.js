@@ -4,8 +4,11 @@ import { reedFromLocalStorage } from './localStorageHelper'
 
 export const checkTokenRefresh = store => next => action => {
   const userData = reedFromLocalStorage();
+  const isOnProcess = JSON.parse(localStorage.getItem('requestInProcess')) || false;
 
-  if (userData.token && window.gapi && window.gapi.hasOwnProperty('auth2')) {
+  if (!isOnProcess && userData.token && window.gapi && window.gapi.hasOwnProperty('auth2')) {
+    localStorage.setItem('requestInProcess', 'true')
+    console.log(window.gapi)
     const { token } = userData;
 
     const googleExpire = jwt.decode(token).exp * 1000 || null;
