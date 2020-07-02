@@ -8,8 +8,17 @@
 
 ### Использован [бэкэнд](https://github.com/maxfarseer/backend-tz3)
 
+### Для запуска
+
+-установить зависимости командой "npm i"
+-создать файл ".env" c переменной "REACT_APP_GOOGLE_CLIENT_ID=ваш google_id"
+-запустить команду "npm start"
+-для работы необходим [бэкэнд](https://github.com/maxfarseer/backend-tz3)
+-создание продакшн-сборки "npm build"
+
 ---
 
 ## Проблемные места
 
-- Тестирование Router'a (Error: Uncaught [TypeError: Cannot read property 'location' of undefined])
+- UI тесты
+- Отсутствует форма регистрации
