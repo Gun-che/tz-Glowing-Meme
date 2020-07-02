@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Route,
   BrowserRouter as Router,
@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 import loadable from '@loadable/component'
 
+import { auth2Init } from '../../utils/auth2Init'
 import HeaderContainer from '../../containers/HeaderContainer'
 import { LoadingConst } from '../LoadingComponent'
 import './App.scss'
@@ -45,6 +46,10 @@ const routes = [
 ]
 
 export const App = () => {
+
+  useEffect(() => {
+    auth2Init()
+  }, [])
 
 
   return (

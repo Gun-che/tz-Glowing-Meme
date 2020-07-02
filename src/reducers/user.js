@@ -3,8 +3,6 @@ import { reedFromLocalStorage } from '../utils/localStorageHelper'
 
 const info = reedFromLocalStorage();
 
-console.log(info.token)
-
 export const initState = {
   loggedIn: info.loggedIn,
   msg: '',

@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { auth2Init } from '../utils/auth2Init'
 import {
   createRequest,
   createExitRequest
@@ -17,10 +16,6 @@ export const HeaderContainer = ({
   msg,
   authToken,
 }) => {
-
-  useEffect(() => {
-    auth2Init()
-  }, [])
 
   return (
     <div>

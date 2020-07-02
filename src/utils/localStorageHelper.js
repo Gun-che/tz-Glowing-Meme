@@ -1,9 +1,6 @@
-
 export const tokenGoogle = 'tokenGoogle__token';
 export const authTokenGoogle = 'authTokenGoogle__auth';
 export const loggedInGoogleSignIn = 'loggedInGoogleSignIn__bool'
-
-
 
 export const reedFromLocalStorage = () => {
   const token = localStorage.getItem(tokenGoogle) || '';
@@ -18,6 +15,7 @@ export const writeLocalStorage = ({
   authToken,
   loggedIn,
 }) => {
+
   if (!token || !authToken) throw Error('incomplete transaction')
 
   localStorage.setItem(loggedInGoogleSignIn, loggedIn);
@@ -26,7 +24,6 @@ export const writeLocalStorage = ({
 }
 
 export const cleareLocalStorage = () => {
-
   localStorage.removeItem(loggedInGoogleSignIn);
   localStorage.removeItem(tokenGoogle);
   localStorage.removeItem(authTokenGoogle);

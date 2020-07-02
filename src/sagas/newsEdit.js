@@ -25,12 +25,12 @@ export function* handlerDeleteNewsRequest(action) {
     })
 
   } catch (error) {
+    console.error(error)
 
     yield put({
       type: a.DELETE_NEWS_FAILURE,
       payload: error
     })
-    console.error(error)
   }
 }
 

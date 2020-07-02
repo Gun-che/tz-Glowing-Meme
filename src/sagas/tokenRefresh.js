@@ -41,7 +41,7 @@ export function* handlerTokenRefreshRequest() {
     yield localStorage.setItem('requestInProcess', 'false');
 
   } catch (e) {
-    console.log(e)
+    console.error(e)
 
     yield put({
       type: a.REFRESH_TOKEN_FAILURE,
@@ -53,7 +53,6 @@ export function* handlerTokenRefreshRequest() {
 
 
 export function* watchTokenRefreshRequest() {
-  console.log('yo!')
 
   yield takeEvery(a.REFRESH_TOKEN_REQUEST, handlerTokenRefreshRequest)
 }

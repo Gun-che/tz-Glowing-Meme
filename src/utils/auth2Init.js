@@ -4,7 +4,7 @@ export const auth2Init = () => {
   }
 
   const _onErr = (err) => {
-    console.log('error', err)
+    console.error('error', err)
   }
 
   if (window.gapi) {

@@ -17,7 +17,6 @@ export const NewsContainer = ({
   deleteRequest,
   token,
   loggedIn,
-  testRefresh
 }) => {
 
   const [id, setId] = useState('')
@@ -27,7 +26,7 @@ export const NewsContainer = ({
   }, [handlerRequest])
 
   useEffect(() => {
-    token && setId(jwt.decode(token).id)
+    token ? setId(jwt.decode(token).id) : setId('')
   }, [token])
 
   const tmp = () => {
@@ -40,7 +39,6 @@ export const NewsContainer = ({
 
     } else {
       return <>
-        <button onClick={testRefresh}>testRefresh</button>
         <News
           data={data}
           handlerRequest={handlerRequest}
@@ -77,7 +75,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   handlerRequest: () => dispatch(createNewsRequest()),
   deleteRequest: (newsId) => dispatch(createDeleteNewsRequest(newsId)),
-  testRefresh: () => dispatch({ type: 'REFRESH_TOKEN_REQUEST' })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsContainer)
