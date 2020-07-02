@@ -17,7 +17,6 @@ export const EditNewsContainer = ({
   msg,
   isFetching,
   token,
-  userData,
   editState,
   editRequest
 }) => {
@@ -33,7 +32,6 @@ export const EditNewsContainer = ({
       return <NewsEdit
         data={currentData[0]}
         token={token}
-        userData={userData}
         newsId={newsId}
         msg={msg}
         editState={editState}
@@ -56,7 +54,6 @@ EditNewsContainer.propTypes = {
   msg: PropTypes.string.isRequired,
   isFetching: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
-  userData: PropTypes.object.isRequired,
   editState: PropTypes.string.isRequired,
   editRequest: PropTypes.func.isRequired,
   currentData: PropTypes.arrayOf(PropTypes.object).isRequired
@@ -66,7 +63,6 @@ const mapStateToProps = (state) => ({
   msg: state.news.msg,
   isFetching: state.news.isFetching,
   token: state.user.token,
-  userData: state.user.userData,
   editState: state.news.editState,
   currentData: state.news.currentData
 })

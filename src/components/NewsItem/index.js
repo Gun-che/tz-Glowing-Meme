@@ -37,7 +37,7 @@ const NewsItem = ({
 
   const tmpEditButtons = (edit, remove) => {
 
-    const _onDelete = (e) => {
+    const handlerDelete = (e) => {
       if (window.confirm('Уверены, что желаете удалить новость?')) {
         deleteRequest({
           newsId: data._id,
@@ -57,7 +57,7 @@ const NewsItem = ({
               title="Редактировать"
             >{edit}</button>
           </Link>
-          <Link to={`/news`} onClick={_onDelete}>
+          <Link to={`/news`} onClick={handlerDelete}>
             <button
               tabIndex='-1'
               title="Удалить"

@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { auth2Init } from '../utils/auth2Init'
 import {
   createRequest,
   createExitRequest
@@ -13,14 +12,10 @@ import { Header } from '../components/Header'
 export const HeaderContainer = ({
   signIn,
   signOut,
-  userData,
   loggedIn,
   msg,
+  authToken,
 }) => {
-
-  useEffect(() => {
-    auth2Init()
-  }, [])
 
   return (
     <div>
@@ -28,8 +23,8 @@ export const HeaderContainer = ({
         signIn={signIn}
         signOut={signOut}
         loggedIn={loggedIn}
-        userData={userData}
         msg={msg}
+        authToken={authToken}
       />
     </div>
   )
@@ -39,14 +34,14 @@ HeaderContainer.propTypes = {
   signIn: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  userData: PropTypes.object.isRequired,
+  authToken: PropTypes.string.isRequired,
   msg: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   loggedIn: state.user.loggedIn,
-  userData: state.user.userData,
-  msg: state.user.msg
+  msg: state.user.msg,
+  authToken: state.user.authToken,
 })
 
 const mapDispatchToProps = dispatch => ({

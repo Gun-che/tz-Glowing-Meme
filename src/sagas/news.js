@@ -35,8 +35,8 @@ export function* handlerNewsItemRequest(action) {
     })
 
   } catch (error) {
-
     console.error(error)
+
     yield put({
       type: a.GET_NEWS_ITEM_FAILURE,
       payload: error,

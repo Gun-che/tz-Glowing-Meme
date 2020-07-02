@@ -11,6 +11,7 @@ import {
 
 import * as s from './index.module.scss'
 import dateFormater from '../../utils/dateFormater'
+import { cutContent } from '../../utils/cutContent'
 
 
 export const News = ({
@@ -26,9 +27,7 @@ export const News = ({
 
   const tmpEditIcons = (creatorId, i) => {
 
-    console.log(creatorId, id)
-
-    const _onDelete = () => {
+    const handlerDelete = () => {
       if (window.confirm('Уверены, что желаете удалить новость?')) {
         deleteRequest({
           newsId: i._id,
@@ -37,7 +36,7 @@ export const News = ({
       }
     }
 
-    if (id && id === creatorId) {
+    if (id === creatorId) {
       return (
         <div className={s.icons}>
           <Link to={`${match.path}/${i._id}/edit`}>
@@ -45,7 +44,7 @@ export const News = ({
               <FontAwesomeIcon icon={faEdit} />
             </button>
           </Link>
-          <button onClick={_onDelete}>
+          <button onClick={handlerDelete}>
             <FontAwesomeIcon icon={faTimesCircle} title="Удалить" />
           </button>
         </div>
@@ -65,18 +64,6 @@ export const News = ({
       {data.length &&
         data.map((i) => {
 
-          const _onCutContent = (string) => {
-
-            if (string.split(' ').length > 50) {
-              return string
-                .split(' ', 50)
-                .join(' ')
-                + ' ...'
-            }
-
-            return string
-          }
-
           const date = dateFormater(i.createDate)
 
           return (
@@ -90,7 +77,7 @@ export const News = ({
                   <div>
                     <h2>{i.title}</h2>
                     <h3>{i.creator.displayName} {date}</h3>
-                    <p>{_onCutContent(i.content)}</p>
+                    <p>{cutContent(i.content, 50)}</p>
                   </div>
                   <p className={s.href}>Читать полностью</p>
                 </Link>

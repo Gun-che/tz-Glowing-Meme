@@ -30,7 +30,6 @@ export const NewsItemContainer = ({
   useEffect(() => {
     const id = token && jwt.decode(token).id;
     const creatorId = currentData[0] && currentData[0].creator._id
-    console.log(currentData)
 
     if (id === creatorId) {
       setEditable(true)

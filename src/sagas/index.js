@@ -12,6 +12,7 @@ import {
   watchEditNewsRequest,
   watchCreateNewsRequest,
 } from './newsEdit'
+import { watchTokenRefreshRequest } from '../sagas/tokenRefresh'
 
 export default function* rootSaga() {
   yield all([
@@ -22,5 +23,6 @@ export default function* rootSaga() {
     watchNewsItemRequest(),
     watchEditNewsRequest(),
     watchCreateNewsRequest(),
+    watchTokenRefreshRequest(),
   ])
 }

@@ -16,7 +16,7 @@ export const NewsContainer = ({
   msg,
   deleteRequest,
   token,
-  loggedIn
+  loggedIn,
 }) => {
 
   const [id, setId] = useState('')
@@ -26,7 +26,7 @@ export const NewsContainer = ({
   }, [handlerRequest])
 
   useEffect(() => {
-    token && setId(jwt.decode(token).id)
+    token ? setId(jwt.decode(token).id) : setId('')
   }, [token])
 
   const tmp = () => {
@@ -38,14 +38,16 @@ export const NewsContainer = ({
       return <ErrorPage msg={msg} err='Error!' />
 
     } else {
-      return <News
-        data={data}
-        handlerRequest={handlerRequest}
-        deleteRequest={deleteRequest}
-        token={token}
-        loggedIn={loggedIn}
-        id={id}
-      />
+      return <>
+        <News
+          data={data}
+          handlerRequest={handlerRequest}
+          deleteRequest={deleteRequest}
+          token={token}
+          loggedIn={loggedIn}
+          id={id}
+        />
+      </>
     }
   }
 
@@ -72,7 +74,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   handlerRequest: () => dispatch(createNewsRequest()),
-  deleteRequest: (newsId) => dispatch(createDeleteNewsRequest(newsId))
+  deleteRequest: (newsId) => dispatch(createDeleteNewsRequest(newsId)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsContainer)

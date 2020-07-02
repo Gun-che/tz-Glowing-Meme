@@ -25,7 +25,10 @@ export default () => {
       </h3>
       <ul>
         <li>
-          Тестирование Router'a (Error: Uncaught TypeError: Cannot read property 'location' of undefined
+          Отсутствует форма регистрации
+        </li>
+        <li>
+          Тестирование компонентов
         </li>
       </ul>
     </div>

@@ -2,8 +2,6 @@
 
 exports[`News container News container init renders properly 1`] = `ShallowWrapper {}`;
 
-exports[`News container News container init renders properly 2`] = `ReactWrapper {}`;
-
 exports[`News container News container loading renders properly 1`] = `ShallowWrapper {}`;
 
 exports[`News container News container render <News> renders properly 1`] = `ShallowWrapper {}`;
