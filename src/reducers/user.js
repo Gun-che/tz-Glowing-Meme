@@ -3,6 +3,8 @@ import { reedFromLocalStorage } from '../utils/localStorageHelper'
 
 const info = reedFromLocalStorage();
 
+console.log(info.token)
+
 export const initState = {
   loggedIn: info.loggedIn,
   msg: '',
@@ -50,6 +52,8 @@ export default function reducer(state = initState, action) {
         ...state,
         msg: action.payload,
       }
+
+
 
 
     case a.REFRESH_TOKEN_REQUEST:

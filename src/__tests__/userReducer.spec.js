@@ -20,22 +20,22 @@ describe('user reducers', () => {
       const action = {
         type: a.SIGN_IN_SUCCESS,
         payload: {
-          profile: { 1: [1, 2, 3] },
+          authToken: '12345ff',
           token: '123ff'
         }
       }
 
       const initState = {
-        userData: {},
         loggedIn: false,
         msg: '',
         token: '',
+        authToken: '',
       }
 
       expect(reducer(initState, action)).toEqual({
         ...initState,
         token: action.payload.token,
-        userData: action.payload.profile,
+        authToken: action.payload.authToken,
         loggedIn: true,
       })
 
@@ -78,11 +78,10 @@ describe('sign out reducer', () => {
   it(a.SIGN_OUT_SUCCESS, () => {
     const action = {
       type: a.SIGN_OUT_SUCCESS,
-      payload: { 1: 1 }
     }
 
     const initState = {
-      userData: { 1: 1, 2: 2 },
+      authToken: '12345ff',
       loggedIn: true,
       msg: '',
       token: '1231',
@@ -91,7 +90,7 @@ describe('sign out reducer', () => {
     expect(reducer(initState, action)).toEqual({
       ...initState,
       token: '',
-      userData: {},
+      authToken: '',
       loggedIn: false,
     })
 
@@ -103,7 +102,7 @@ describe('sign out reducer', () => {
     }
 
     const initState = {
-      userData: { 1: 1, 2: 2 },
+      authToken: '12345ff',
       loggedIn: true,
       msg: '',
       token: '1231',
@@ -112,6 +111,75 @@ describe('sign out reducer', () => {
     expect(reducer(initState, action)).toEqual({
       ...initState,
       msg: action.payload,
+    })
+  })
+
+
+
+  it('should return the initial state', () => {
+    expect(reducer(undefined, {})).toEqual(initState)
+  })
+})
+
+describe('sign out reducer', () => {
+
+  it(a.REFRESH_TOKEN_REQUEST, () => {
+    const action = {
+      type: a.REFRESH_TOKEN_REQUEST,
+    }
+
+    expect(reducer(initState, action)).toEqual({
+      ...initState,
+      msg: '',
+    })
+  })
+
+  it(a.REFRESH_TOKEN_SUCCESS, () => {
+    const action = {
+      type: a.REFRESH_TOKEN_SUCCESS,
+      payload: {
+        token: '123ff',
+        authToken: '12345ff'
+      }
+    }
+
+    const initState = {
+      authToken: '12344',
+      loggedIn: true,
+      msg: '',
+      token: '1231',
+    }
+
+    expect(reducer(initState, action)).toEqual({
+      ...initState,
+      token: action.payload.token,
+      authToken: action.payload.authToken,
+      loggedIn: true,
+    })
+
+  })
+  it(a.REFRESH_TOKEN_FAILURE, () => {
+    const action = {
+      type: a.REFRESH_TOKEN_FAILURE,
+      payload: {
+        message: 'err'
+      }
+    }
+
+    const initState = {
+      authToken: '12344',
+      loggedIn: true,
+      msg: '',
+      token: '1231',
+    }
+
+    expect(reducer(initState, action)).toEqual({
+      ...initState,
+      msg: action.payload.message,
+      authToken: '',
+      token: '',
+      loggedIn: false,
+
     })
   })
 

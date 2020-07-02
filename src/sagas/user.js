@@ -30,7 +30,6 @@ export function* handlerSignInRequest() {
     yield put({
       type: a.SIGN_IN_SUCCESS,
       payload: {
-        profile: response.getBasicProfile(),
         authToken: token.id_token,
         token: id.data.token,
       }
