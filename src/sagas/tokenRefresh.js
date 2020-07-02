@@ -11,8 +11,8 @@ import { writeLocalStorage } from '../utils/localStorageHelper'
 export function* handlerTokenRefreshRequest() {
   try {
     const auth2 = yield call(window.gapi.auth2.getAuthInstance);
-    console.log('yo!', auth2.currentUser)
     const currentUser = auth2.currentUser;
+
     const response = yield apply(currentUser, currentUser.get);
 
     const token = yield apply(response, response.reloadAuthResponse)
@@ -20,7 +20,7 @@ export function* handlerTokenRefreshRequest() {
     const authToken = token.id_token
 
     const id = yield apply(api, api.post, ['auth/google/', {
-      token: token.id_token
+      token: authToken
     }])
     console.log(id)
 

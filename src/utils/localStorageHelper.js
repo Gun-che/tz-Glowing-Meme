@@ -27,7 +27,7 @@ export const writeLocalStorage = ({
 
 export const cleareLocalStorage = () => {
 
-  localStorage.setItem(loggedInGoogleSignIn);
-  localStorage.setItem(tokenGoogle);
-  localStorage.setItem(authTokenGoogle);
+  localStorage.removeItem(loggedInGoogleSignIn);
+  localStorage.removeItem(tokenGoogle);
+  localStorage.removeItem(authTokenGoogle);
 }

@@ -113,13 +113,9 @@ describe('sign out reducer', () => {
       msg: action.payload,
     })
   })
-
-
-
-  it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual(initState)
-  })
 })
+
+
 
 describe('sign out reducer', () => {
 
@@ -181,11 +177,5 @@ describe('sign out reducer', () => {
       loggedIn: false,
 
     })
-  })
-
-
-
-  it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual(initState)
   })
 })
