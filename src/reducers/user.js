@@ -1,34 +1,30 @@
-import {
-  SIGN_IN_REQUEST,
-  SIGN_IN_SUCCESS,
-  SIGN_IN_FAILURE,
-  SIGN_OUT_REQUEST,
-  SIGN_OUT_SUCCESS,
-  SIGN_OUT_FAILURE,
-} from '../actions/user'
+import * as a from '../actions/user'
+import { reedFromLocalStorage } from '../utils/localStorageHelper'
+
+const info = reedFromLocalStorage();
 
 export const initState = {
-  userData: {},
-  loggedIn: JSON.parse(localStorage.getItem('loggedInGoogleSignIn')) || false,
+  loggedIn: info.loggedIn,
   msg: '',
-  token: localStorage.getItem('tokenGoogle') || '',
+  token: info.token,
+  authToken: info.authToken,
 }
 
 export default function reducer(state = initState, action) {
   switch (action.type) {
-    case SIGN_IN_REQUEST:
+    case a.SIGN_IN_REQUEST:
       return {
         ...state,
         msg: '',
       }
-    case SIGN_IN_SUCCESS:
+    case a.SIGN_IN_SUCCESS:
       return {
         ...state,
-        userData: action.payload.profile,
         loggedIn: true,
-        token: action.payload.token
+        token: action.payload.token,
+        authToken: action.payload.authToken,
       }
-    case SIGN_IN_FAILURE:
+    case a.SIGN_IN_FAILURE:
       return {
         ...state,
         msg: action.payload,
@@ -37,22 +33,44 @@ export default function reducer(state = initState, action) {
 
 
 
-    case SIGN_OUT_REQUEST:
+    case a.SIGN_OUT_REQUEST:
       return {
         ...state,
         msg: '',
       }
-    case SIGN_OUT_SUCCESS:
+    case a.SIGN_OUT_SUCCESS:
       return {
         ...state,
-        userData: {},
         loggedIn: false,
-        token: ''
+        token: '',
+        authToken: '',
       }
-    case SIGN_OUT_FAILURE:
+    case a.SIGN_OUT_FAILURE:
       return {
         ...state,
         msg: action.payload,
+      }
+
+
+    case a.REFRESH_TOKEN_REQUEST:
+      return {
+        ...state,
+        msg: '',
+      }
+    case a.REFRESH_TOKEN_SUCCESS:
+      return {
+        ...state,
+        authToken: action.payload.authToken,
+        loggedIn: true,
+        token: action.payload.token,
+      }
+    case a.REFRESH_TOKEN_FAILURE:
+      return {
+        ...state,
+        msg: action.payload,
+        authToken: '',
+        token: '',
+        loggedIn: false,
       }
 
 

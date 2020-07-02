@@ -1,15 +1,14 @@
-import jwt from 'jsonwebtoken'
 
-const token = 'tokenGoogle__token';
-const authToken = 'authTokenGoogle__auth';
-const loggedIn = 'loggedInGoogleSignIn__bool'
-
+export const tokenGoogle = 'tokenGoogle__token';
+export const authTokenGoogle = 'authTokenGoogle__auth';
+export const loggedInGoogleSignIn = 'loggedInGoogleSignIn__bool'
 
 
-export const reedFromLocalStarage = () => {
-  const token = localStorage.getItem(token) || '';
-  const authToken = localStorage.getItem(authToken) || '';
-  const loggedIn = JSON.parse(localStorage.getItem(loggedInSignIn)) || false;
+
+export const reedFromLocalStorage = () => {
+  const token = localStorage.getItem(tokenGoogle) || '';
+  const authToken = localStorage.getItem(authTokenGoogle) || '';
+  const loggedIn = JSON.parse(localStorage.getItem(loggedInGoogleSignIn)) || false;
 
   return { token, authToken, loggedIn }
 }
@@ -21,14 +20,14 @@ export const writeLocalStorage = ({
 }) => {
   if (!token || !authToken) throw Error('incomplete transaction')
 
-  localStorage.setItem(loggedInSignIn, loggedIn);
-  localStorage.setItem(token, token);
-  localStorage.setItem(authToken, authToken);
+  localStorage.setItem(loggedInGoogleSignIn, loggedIn);
+  localStorage.setItem(tokenGoogle, token);
+  localStorage.setItem(authTokenGoogle, authToken);
 }
 
 export const cleareLocalStorage = () => {
 
-  localStorage.setItem(loggedInSignIn);
-  localStorage.setItem(token);
-  localStorage.setItem(authToken);
+  localStorage.setItem(loggedInGoogleSignIn);
+  localStorage.setItem(tokenGoogle);
+  localStorage.setItem(authTokenGoogle);
 }

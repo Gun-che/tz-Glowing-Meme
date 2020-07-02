@@ -1,21 +1,24 @@
+import { tokenDecoder } from '../../utils/tokenDecoder'
 import React from 'react'
 import * as s from './index.module.scss'
 
+
 export default ({
-  userData
+  authToken
 }) => {
+  const { name, email, picture } = tokenDecoder(authToken)
 
   return (
     <div className={s.card}>
       <div className={s.photo}>
-        <img src={userData.getImageUrl()} alt="i" />
+        <img src={picture} alt="i" />
       </div>
       <div className={s.info}>
         <h3>
-          {userData.getName()}
+          {name}
         </h3>
         <h4>
-          {userData.getEmail()}
+          {email}
         </h4>
       </div>
     </div>

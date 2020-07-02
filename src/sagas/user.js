@@ -6,6 +6,7 @@ import {
 } from 'redux-saga/effects'
 import * as a from '../actions/user';
 import api from '../utils/API'
+import { writeLocalStorage, cleareLocalStorage } from '../utils/localStorageHelper'
 
 export function* handlerSignInRequest() {
   try {
@@ -20,14 +21,17 @@ export function* handlerSignInRequest() {
     }])
     console.log(id)
 
-    localStorage.setItem('loggedInGoogleSignIn', 'true');
-    localStorage.setItem('tokenGoogle', id.data.token);
-    localStorage.setItem('authTokenGoogle', token.id_token);
+    writeLocalStorage({
+      token: id.data.token,
+      authToken: token.id_token,
+      loggedIn: true,
+    })
 
     yield put({
       type: a.SIGN_IN_SUCCESS,
       payload: {
         profile: response.getBasicProfile(),
+        authToken: token.id_token,
         token: id.data.token,
       }
     })
@@ -49,8 +53,7 @@ export function* handlerSignOutRequest() {
 
     const response = yield apply(auth2, auth2.signOut)
 
-    localStorage.setItem('loggedInGoogleSignIn', 'false');
-    localStorage.setItem('tokenGoogle', '');
+    cleareLocalStorage()
 
     yield put({
       type: a.SIGN_OUT_SUCCESS

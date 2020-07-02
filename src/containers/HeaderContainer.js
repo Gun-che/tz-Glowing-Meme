@@ -13,9 +13,9 @@ import { Header } from '../components/Header'
 export const HeaderContainer = ({
   signIn,
   signOut,
-  userData,
   loggedIn,
   msg,
+  authToken,
 }) => {
 
   useEffect(() => {
@@ -28,8 +28,8 @@ export const HeaderContainer = ({
         signIn={signIn}
         signOut={signOut}
         loggedIn={loggedIn}
-        userData={userData}
         msg={msg}
+        authToken={authToken}
       />
     </div>
   )
@@ -39,14 +39,14 @@ HeaderContainer.propTypes = {
   signIn: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  userData: PropTypes.object.isRequired,
+  authToken: PropTypes.string.isRequired,
   msg: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   loggedIn: state.user.loggedIn,
-  userData: state.user.userData,
-  msg: state.user.msg
+  msg: state.user.msg,
+  authToken: state.user.authToken,
 })
 
 const mapDispatchToProps = dispatch => ({
