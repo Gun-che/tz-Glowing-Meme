@@ -52,7 +52,7 @@
     "expect": "^26.0.1",
     "fetch-mock": "^9.10.1",
     "jest-mock-axios": "^4.2.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "node-sass": "^4.14.1",
     "react-testing-library": "^8.0.1",
     "redux-logger": "^3.0.6",
